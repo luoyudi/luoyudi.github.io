@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title> | Luoyudi&#39;s Blog</title>
+    <meta name="author" content="Luoyudi" />
+    <meta name="description" content="This is a personal blog site that keeps track of various questions and my study notes." />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LUOYUDI&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LUOYUDI&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/28
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><a name="Kzy9y"></a></p>
+<h1 id="spring体系结构"><a href="#spring体系结构" class="headerlink" title="spring体系结构"></a>spring体系结构</h1><p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1641534322701-3b6ab396-9f45-4a3f-ba3a-f8bb7853621a.png#averageHue=%233a3733&clientId=uc875082c-4782-4&from=paste&height=513&id=u1c710c5f&originHeight=649&originWidth=892&originalType=binary&ratio=1&rotation=0&showTitle=false&size=104301&status=done&style=none&taskId=u89302698-c8f0-4af1-89ef-3a3387a4490&title=&width=705" alt="image.png"><br />spring架构图如上<br />spring的核心部分是下面的四个部分</p>
+<ol>
+<li>beans</li>
+<li>core</li>
+<li>context</li>
+<li>spel</li>
+</ol>
+<p>必须导入至少上面四个jar包测可以正常使用spring<br />另外还需要日志jar<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1641534561516-e36ad782-2a8d-4dc6-b219-1a821d400883.png#averageHue=%233b4343&clientId=uc875082c-4782-4&from=paste&height=194&id=u7e4feefc&originHeight=193&originWidth=517&originalType=binary&ratio=1&rotation=0&showTitle=false&size=28189&status=done&style=none&taskId=ud8d08949-c720-4e38-88d0-8e06286432d&title=&width=518.5" alt="image.png"><br />commons-logging日志</p>
+<p><a name="JA3Rq"></a></p>
+<h1 id="Spring-IOC"><a href="#Spring-IOC" class="headerlink" title="Spring IOC"></a>Spring IOC</h1><p>控制反转<br />我们把Javabean对象交给spring来管理<br />只需在xml文件中配置JavaBean对象,就可以使用ApplicationContext的ClassPathXmlApplicationContext方法读取xml文件让spring管理JavaBean</p>
+<p><a name="C60wG"></a></p>
+<h2 id="xml文件配置JavaBean"><a href="#xml文件配置JavaBean" class="headerlink" title="xml文件配置JavaBean"></a>xml文件配置JavaBean</h2><p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1641534973659-d9b0f41c-bc11-47e4-af31-80b89bd364b2.png#averageHue=%23f7f5f4&clientId=uc875082c-4782-4&from=paste&height=592&id=u94fda804&originHeight=868&originWidth=1203&originalType=binary&ratio=1&rotation=0&showTitle=false&size=126463&status=done&style=none&taskId=uc676f329-57e2-4f87-9c3a-abf539c9171&title=&width=821" alt="image.png"><br />上面就是配置JavaBean时bean标签的可配置属性</p>
+<p>另外也可以使用xml文件读取properties文件<br />需要<br /><em>&lt;_context:property-placeholder location&#x3D;”jdbc.properties”_&#x2F;&gt;</em><br />引入外部配置文件<br><a name="MKOGA"></a></p>
+<h2 id="使用注解配置JavaBean"><a href="#使用注解配置JavaBean" class="headerlink" title="使用注解配置JavaBean"></a>使用注解配置JavaBean</h2><p>使用注解配置JavaBean<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1641535323827-9915fa3f-2536-417f-b5f3-c0763e325c44.png#averageHue=%23f9f8f7&clientId=uc875082c-4782-4&from=paste&height=554&id=ua45a2b50&originHeight=797&originWidth=1255&originalType=binary&ratio=1&rotation=0&showTitle=false&size=122453&status=done&style=none&taskId=u62d287c6-ae4c-4345-bd28-b6bf4f0fe58&title=&width=872.5" alt="image.png"><br><a name="z31yY"></a></p>
+<h2 id="完全注解开发"><a href="#完全注解开发" class="headerlink" title="完全注解开发"></a>完全注解开发</h2><p>完全注解开发需要另外创建一个配置类<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1641535388886-431f8b9b-8495-4736-877a-f6c23955c2a9.png#averageHue=%233d4545&clientId=uc875082c-4782-4&from=paste&height=302&id=u8b16a75f&originHeight=367&originWidth=767&originalType=binary&ratio=1&rotation=0&showTitle=false&size=48913&status=done&style=none&taskId=uc31bc4f1-8422-42e0-bab6-071de755291&title=&width=631.5" alt="image.png"><br />当使用配置类时测试方法发生改变<br />ApplicationContext context &#x3D; new AnnotationConfigApplicationContext_(<em>SpringConfig.class</em>)_;<br />使用上面的方法读取配置类<br><a name="FZxK5"></a></p>
+<h1 id="Spring-AOP"><a href="#Spring-AOP" class="headerlink" title="Spring AOP"></a>Spring AOP</h1><p>aop面向切面编程<br />简单来说就是在不修改源代码的前提下增加新功能<br />利用aop可以实现对业务逻辑各个部分进行隔离,从而使得逻辑各部分之间的耦合度降低,提高程序的可重用性,提高开发效率<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1641536076363-21da8e79-2b94-41c1-9e01-2d764517a1fc.png#averageHue=%233c4443&clientId=uc875082c-4782-4&from=paste&height=750&id=u47441b8e&originHeight=856&originWidth=940&originalType=binary&ratio=1&rotation=0&showTitle=false&size=331389&status=done&style=none&taskId=u96e91c53-7b6b-4256-8709-b859bd2d576&title=&width=824" alt="image.png"><br />具体实现如上图</p>
+<p>aop术语</p>
+<ol>
+<li>连接点<br />哪些方法可以被增强,方法被叫做连接点 </li>
+<li>切入点<br />实际被增强的方法,被叫做切入点 </li>
+<li>通知(增强)<br />实际增强的逻辑部分被称为通知<br />通知有多种类型</li>
+</ol>
+<ul>
+<li>前置通知</li>
+<li>后置通知</li>
+<li>环绕通知</li>
+<li>异常通知</li>
+<li>最终通知</li>
+</ul>
+<ol start="4">
+<li>切面<br />把通知应用到切入点的动作叫切面</li>
+</ol>
+<p>切入点表达式<br />execution([权限修饰符] [返回类型] [全路径名] [方法名称] ([参数列表])<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1641536246819-5db9250f-7a11-45d2-9f59-bfe18f7f8f38.png#averageHue=%23435144&clientId=uc875082c-4782-4&from=paste&height=38&id=u8a5b071c&originHeight=38&originWidth=575&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11766&status=done&style=none&taskId=uebfc5012-56eb-4298-b8d2-b4eb4c51674&title=&width=574.5" alt="image.png"><br />一般情况下如上图</p>
+<p><a name="fRMCX"></a></p>
+<h1 id="JDBCTemplate"><a href="#JDBCTemplate" class="headerlink" title="JDBCTemplate"></a>JDBCTemplate</h1><p>jdbctemplate封装了操作数据库的函数原型</p>
+<p>在使用时</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 修改</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">text1</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;update student set num = 1 where name = &#x27;zhangsan&#x27;&quot;</span>;</span><br><span class="line">	<span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> template.update(sql);</span><br><span class="line">	System.out.println(count);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 添加</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">text2</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;insert into student values(?,?)&quot;</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> template.update(sql, <span class="string">&quot;赵四&quot;</span>, <span class="number">999</span>);</span><br><span class="line">    System.out.println(count);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 删除</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">text3</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;delete from student where name = ?&quot;</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> template.update(sql, <span class="string">&quot;zhangsan&quot;</span>);</span><br><span class="line">    System.out.println(count);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 查询一条记录</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">text4</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from student where name = ?&quot;</span>;</span><br><span class="line">    Map&lt;String, Object&gt; map = template.queryForMap(sql, <span class="string">&quot;lisi&quot;</span>);</span><br><span class="line">    System.out.println(map);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 查询表中所有元素</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test5</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from student&quot;</span>;</span><br><span class="line">    List&lt;Map&lt;String, Object&gt;&gt; list = template.queryForList(sql);</span><br><span class="line">    <span class="keyword">for</span> (Map&lt;String, Object&gt; stringObjectMap : list) &#123;</span><br><span class="line">        System.out.println(stringObjectMap);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 查询所有记录</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">text6</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from student&quot;</span>;</span><br><span class="line">    List&lt;student&gt; list = template.query(sql, <span class="keyword">new</span> <span class="title class_">RowMapper</span>&lt;student&gt;() &#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> student <span class="title function_">mapRow</span><span class="params">(ResultSet resultSet, <span class="type">int</span> i)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">            <span class="type">student</span> <span class="variable">student</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">student</span>();</span><br><span class="line">            <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> resultSet.getString(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">            <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> resultSet.getInt(<span class="string">&quot;num&quot;</span>);</span><br><span class="line"></span><br><span class="line">            student.setName(name);</span><br><span class="line">            student.setNum(num);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> student;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">for</span> (student student : list) &#123;</span><br><span class="line">        System.out.println(student);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 查询所有记录</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">text7</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from student&quot;</span>;</span><br><span class="line">    List&lt;student&gt; list = template.query(sql, <span class="keyword">new</span> <span class="title class_">BeanPropertyRowMapper</span>&lt;student&gt;(student.class));</span><br><span class="line">    <span class="keyword">for</span> (student student : list) &#123;</span><br><span class="line">        System.out.println(student);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 查询总记录数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">text8</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select count(name) from student&quot;</span>;</span><br><span class="line">    <span class="type">Long</span> <span class="variable">aLong</span> <span class="operator">=</span> template.queryForObject(sql, Long.class);</span><br><span class="line">    System.out.println(aLong);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://blog.csdn.net/m0_56246862/article/details/120378595"><br /></a><br><a name="xr9n0"></a></p>
+<h1 id="Spring5中的新功能"><a href="#Spring5中的新功能" class="headerlink" title="Spring5中的新功能"></a>Spring5中的新功能</h1><p><a name="ANhK3"></a></p>
+<h2 id="封装了日志"><a href="#封装了日志" class="headerlink" title="封装了日志"></a>封装了日志</h2><p>官方建议使用log4j2</p>
+<ol>
+<li>引入的jar包依赖</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1641537198138-de333436-18f0-45ed-a774-f30765f710b6.png#averageHue=%23edeeeb&clientId=uc875082c-4782-4&from=paste&height=140&id=udad04014&originHeight=121&originWidth=631&originalType=binary&ratio=1&rotation=0&showTitle=false&size=50358&status=done&style=none&taskId=u03570fdc-f694-4c15-9fad-d836bf95b07&title=&width=728.5" alt="image.png"></p>
+<ol start="2">
+<li>创建log4j2.xml配置文件<br><a name="wC6ul"></a></li>
+</ol>
+<h2 id="整合junit5"><a href="#整合junit5" class="headerlink" title="整合junit5"></a>整合junit5</h2><p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1641544698976-60f48bca-0cc2-4691-9f8d-834ba51aacce.png#averageHue=%233c4343&clientId=uc875082c-4782-4&from=paste&height=357&id=u17da428c&originHeight=399&originWidth=636&originalType=binary&ratio=1&rotation=0&showTitle=false&size=74317&status=done&style=none&taskId=u362f8c80-8091-4c40-affb-c1def57df35&title=&width=569" alt="image.png"><br />方便测试</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 Luoyudi&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Luoyudi
+        </div>
+        <div>
+            Based on the <a href="https://hexo.io">Hexo Engine</a> &amp;
+            <a href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>Hello World | Luoyudi&#39;s Blog</title>
+    <title> | Luoyudi&#39;s Blog</title>
     <meta name="author" content="Luoyudi" />
     <meta name="description" content="This is a personal blog site that keeps track of various questions and my study notes." />
     <meta name="keywords" content="" />
@@ -150,33 +150,36 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>Hello World</h1>
+        <h1></h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/3/20
+            2024/3/28
         </span>
         
         
     </div>
     
     <div class="content" v-pre>
-        <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <p><a name="UYMTS"></a></p>
+<h1 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h1><p>AOP是Spring框架中两大特性的其中之一面向切面编程<br />用人话来说就是不通过修改源代码的方式给方法增加新功能<br />好处就是,利用aop可以实现对业务逻辑各个部分进行隔离,从而使得逻辑各部分之间的耦合度降低,提高程序的可重用性,提高开发效率<br><a name="poebc"></a></p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>AOP(JDK动态代理)<br />使用Proxy类中的_newProxyInstance_方法创建对象<br />这个方法一共有3个参数</p>
+<ol>
+<li>ClassLoader类加载器</li>
+<li>增强方法所在的类的实现接口,支持多个接口</li>
+<li>实现InvocationHandler接口,创建代理对象,写增强的方法</li>
+</ol>
+<p>代码实现</p>
+<p>首先创建一个接口和他的实现类<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1641368126085-908f8d4c-4ac9-4f21-84ca-a7f07d2a075e.png#averageHue=%233b4142&clientId=ub038d12a-f4f8-4&from=paste&height=117&id=u94730a24&originHeight=233&originWidth=388&originalType=binary&ratio=1&rotation=0&showTitle=false&size=10751&status=done&style=none&taskId=u1862eb2e-a361-4b1f-9a3d-1a1db9e3f1a&title=&width=194" alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1641368138235-4828cb04-fddd-4ce0-904a-ff573ac1620f.png#averageHue=%233b4142&clientId=ub038d12a-f4f8-4&from=paste&height=176&id=u2d0ecb3c&originHeight=352&originWidth=554&originalType=binary&ratio=1&rotation=0&showTitle=false&size=22951&status=done&style=none&taskId=u6cd8faae-ee3d-4fb6-a3be-5274f5e70cc&title=&width=277" alt="image.png"><br />比如我们想要增强一下userdaoimpl类中的add方法<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1641368250303-96bc21e2-fc22-466f-9e1f-798beb19304a.png#averageHue=%233b4545&clientId=ub038d12a-f4f8-4&from=paste&height=257&id=u41e4ec0c&originHeight=514&originWidth=1316&originalType=binary&ratio=1&rotation=0&showTitle=false&size=280105&status=done&style=none&taskId=u94938457-1c71-45e1-ac17-fb4643941b5&title=&width=658" alt="image.png"><br />首先创建一个类jdkproxy调用_newProxyInstance_方法三个参数</p>
+<ol>
+<li>JDKProxy.class.getClassLoader_()_ </li>
+<li>interfaces,</li>
+<li>new UserDaoProxy_(<em>userDao</em>)_</li>
+</ol>
+<p>第三个参数可以直接写成匿名内部类的形式直接new InvocationHandler<br />或者另外写一个类实现InvocationHandler类<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1641368500796-d69b4134-8da9-4eaa-aab8-57fe29e786dd.png#averageHue=%233c4444&clientId=ub038d12a-f4f8-4&from=paste&height=337&id=ud0d78a53&originHeight=673&originWidth=1127&originalType=binary&ratio=1&rotation=0&showTitle=false&size=295491&status=done&style=none&taskId=uaf89ef27-d1ca-4dbf-9eca-8b53fc3f993&title=&width=563.5" alt="image.png"><br />类中创建属性和有参构造用来接收需要增强的类<br />另外需要实现InvocationHandler中的invoke方法这个方法就是增强的逻辑<br /> invoke_(<em>Object proxy, Method method, Object</em>[] <em>args</em>)_<br />方法有三个参数proxy表示代理对象method表示执行的方法args表示方法执行的参数<br />在invoke方法内部一定要执行method.invoke方法,他表示开始执行要增强的方法,比如上面的例子就是开始执行add方法.</p>
 
     </div>
     

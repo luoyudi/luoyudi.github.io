@@ -1,0 +1,653 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title> | Luoyudi&#39;s Blog</title>
+    <meta name="author" content="Luoyudi" />
+    <meta name="description" content="This is a personal blog site that keeps track of various questions and my study notes." />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LUOYUDI&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LUOYUDI&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/28
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><a name="Cn2cZ"></a></p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p><a name="uviVo"></a></p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>:::tips<br>计算机网络是一个将分散的、具有独立功能的计算机系统，通过通信设备与线路连接起来，有功能完善的软件实现资源共享和信息传递的系统。<br />计算机网络是互联的自治的计算机集合<br />互联-互联互通 通信链路<br />自治-无主从关系<br>:::<br><a name="jLgKy"></a></p>
+<h3 id="计算机网络的功能"><a href="#计算机网络的功能" class="headerlink" title="计算机网络的功能"></a>计算机网络的功能</h3><p>:::tips</p>
+<ol>
+<li>数据通信			数据的传递</li>
+<li>资源共享			打印机共享	云软件	数据资源共享</li>
+<li>分布式处理		Hadoop分布式</li>
+<li>提高可靠性		不同链路上的机器（宕机后）互相替代</li>
+<li>负载均衡			</li>
+<li>……<br>:::</li>
+</ol>
+<p><a name="OBT96"></a></p>
+<h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><p>不同的分类角度：<br /><strong>组成部分</strong><br>:::tips<br>计算机网络组成部分：</p>
+<ol>
+<li><p>硬件</p>
+<ol>
+<li>计算机</li>
+<li>线路</li>
+<li>交换机</li>
+</ol>
+</li>
+<li><p>软件</p>
+<ol>
+<li>应用软件</li>
+</ol>
+</li>
+<li><p>协议<br>:::<br><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668688907427-e22482e0-8733-4c16-b8ee-6d67b6efdaa3.png#averageHue=%23f2edec&clientId=uc02cbb5e-c957-4&from=paste&height=238&id=uec382053&originHeight=297&originWidth=1065&originalType=binary&ratio=1&rotation=0&showTitle=false&size=88566&status=done&style=shadow&taskId=u857cae74-6fca-4d96-b17d-a7f1cf45549&title=&width=852" alt="image.png"><br /><strong>工作方式</strong><br>:::tips</p>
+</li>
+<li><p>边缘部分		用户直接使用的部分</p>
+<ol>
+<li>C&#x2F;S方式（客户端&#x2F;服务器）</li>
+<li>P2P方式</li>
+</ol>
+</li>
+<li><p>核心部分		为边缘部分服务<br>:::<br><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668689052542-10e5f515-4898-4a81-8e84-8d2cf203280c.png#averageHue=%23f9faf8&clientId=uc02cbb5e-c957-4&from=paste&height=278&id=ub2680a0b&originHeight=347&originWidth=921&originalType=binary&ratio=1&rotation=0&showTitle=false&size=129150&status=done&style=shadow&taskId=u0bb77d5c-f0a6-4f0e-85e5-320979a97ef&title=&width=736.8" alt="image.png"><br /><strong>功能组成</strong><br>:::tips</p>
+</li>
+<li><p>通信子网		实现数据传递</p>
+</li>
+<li><p>资源子网		实现数据共享&#x2F;数据处理<br>:::<br><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668689212930-92ae098d-b301-4a68-926a-17e7b32cfab8.png#averageHue=%23ead0c1&clientId=uc02cbb5e-c957-4&from=paste&height=266&id=u9d9f4593&originHeight=333&originWidth=681&originalType=binary&ratio=1&rotation=0&showTitle=false&size=121121&status=done&style=shadow&taskId=u8e106596-6378-47a9-9d89-da9a118980c&title=&width=544.8" alt="image.png"><br><a name="SnWdD"></a></p>
+</li>
+</ol>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>:::tips<br>按照分布范围分：</p>
+<ol>
+<li><p>广域网WAN（跨国）交换技术</p>
+</li>
+<li><p>城域网MAN（城市）</p>
+</li>
+<li><p>区域网WAN（1km，校园网）广播技术</p>
+</li>
+<li><p>个人区域网PAN（智能设备互相连接）<br>:::<br>:::tips<br>按照使用者分类：</p>
+</li>
+<li><p>公用网：电信、联通、移动</p>
+</li>
+<li><p>专用网：军队、政府、铁路、公安<br>:::<br>:::tips<br>交换技术分：</p>
+</li>
+<li><p>电路交换</p>
+</li>
+<li><p>报文交换</p>
+</li>
+<li><p>分组交换<br>:::<br>:::tips<br>按照拓扑结构分类：</p>
+</li>
+<li><p>总线型</p>
+</li>
+<li><p>星形</p>
+</li>
+<li><p>环形</p>
+</li>
+<li><p>网状行（因特网就是网状行）<br>:::<br><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668689663125-494065ef-4197-44e2-bcb1-87479913f33a.png#averageHue=%23ececec&clientId=uc02cbb5e-c957-4&from=paste&height=158&id=u502ac9a4&originHeight=198&originWidth=960&originalType=binary&ratio=1&rotation=0&showTitle=false&size=79539&status=done&style=shadow&taskId=uff4e1940-5857-4f76-810a-e9b747cfb99&title=&width=768" alt="image.png"><br>:::tips<br>安装传输技术：</p>
+</li>
+<li><p>广播式网络			共享公共通信信道</p>
+</li>
+<li><p>点对点式网络			使用分组转发和路由选择机制<br>:::<br><a name="fzlsU"></a></p>
+</li>
+</ol>
+<h3 id="标准化"><a href="#标准化" class="headerlink" title="标准化"></a>标准化</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668690036775-22c2e257-adc1-45e3-9148-d95d42567729.png#averageHue=%23ececeb&clientId=uc02cbb5e-c957-4&from=paste&height=210&id=uec7a5820&originHeight=262&originWidth=957&originalType=binary&ratio=1&rotation=0&showTitle=false&size=94820&status=done&style=shadow&taskId=u1e3402d4-c8eb-4b6f-9ef0-ad6e65e42c0&title=&width=765.6" alt="image.png"><br><a name="V2eTm"></a></p>
+<h4 id="RFC（因特网标准形式）"><a href="#RFC（因特网标准形式）" class="headerlink" title="RFC（因特网标准形式）"></a>RFC（因特网标准形式）</h4><p>:::tips<br>rfc要成为正式标准需要四个阶段</p>
+<ol>
+<li>因特网草案		这个阶段还不是RFC文档<ol>
+<li>发送给RFC编辑邮箱（通过进入下一阶段）</li>
+</ol>
+</li>
+<li>建议标准			这个阶段开始就是RFC文档<ol>
+<li>拿到网络上收取意见更改</li>
+</ol>
+</li>
+<li>草案标准（2011年取消）<ol>
+<li>IETF\IAB审核通过</li>
+</ol>
+</li>
+<li>因特网标准<br>:::<br><a name="YPz8m"></a></li>
+</ol>
+<h4 id="相关组织"><a href="#相关组织" class="headerlink" title="相关组织"></a>相关组织</h4><p>:::tips<br>国际标准化组织ISO		OSI参考模型、HDLC协议<br />国际电信联盟ITU		指定通信规则<br />国际电气电子工程师协会IEEE		学术机构、IEEE892系列、5G<br />internet共生任务组IETF		负责制定相关标准指定<br>:::<br><a name="RIVh7"></a></p>
+<h3 id="性能相关指标"><a href="#性能相关指标" class="headerlink" title="性能相关指标"></a>性能相关指标</h3><p><a name="VbRmU"></a></p>
+<h4 id="速率"><a href="#速率" class="headerlink" title="速率"></a>速率</h4><p>:::tips<br>速率即数据率，或者数据传输率或比特率<br>:::<br>:::tips<br>比特 1&#x2F;0 位<br>:::<br>:::tips<br>连接在计算机网络上的主机在数字信道上传送数据位数的速录。<br />单位是b&#x2F;s，kb&#x2F;s，Mb&#x2F;s，Gb&#x2F;s，Tb&#x2F;s<br>:::<br><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668744071938-86a05abe-a9d8-4ee3-b8bd-c2ab836723f7.png#averageHue=%23f1f0f0&clientId=u6f83cc89-845a-4&from=paste&height=245&id=u20969698&originHeight=306&originWidth=1034&originalType=binary&ratio=1&rotation=0&showTitle=false&size=137315&status=done&style=shadow&taskId=u775de209-61e3-4e7f-9440-a1cce681e9e&title=&width=827.2" alt="image.png"><br><a name="oLucd"></a></p>
+<h4 id="带宽"><a href="#带宽" class="headerlink" title="带宽"></a>带宽</h4><p>:::tips</p>
+<ol>
+<li>带宽原本指某个信号具有的频带宽度，即最高频与最低频之差，单位是赫兹（Hz）</li>
+<li>计算机网络中，带宽用来表示网络的通信线路传送数据之间的能力，通常是指但是时间内从网络中的某一点到零一点所能通过的“最高数据率”。单位是“比特每秒”<ol>
+<li>网络设备所支持的最高速度</li>
+<li>单位是b&#x2F;s，kb&#x2F;s，Mb&#x2F;s，Gb&#x2F;s，Tb&#x2F;s<br>:::<br><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668744707536-ab00ab6a-7743-4e93-b16e-71c4fff8f35f.png#averageHue=%23f3eee4&clientId=u6f83cc89-845a-4&from=paste&height=319&id=u0594d5d0&originHeight=399&originWidth=1110&originalType=binary&ratio=1&rotation=0&showTitle=false&size=207448&status=done&style=shadow&taskId=u5f6c39f5-4401-4b9e-ac7a-46483f680d7&title=&width=888" alt="image.png"><br><a name="k1HYA"></a></li>
+</ol>
+</li>
+</ol>
+<h4 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a>吞吐量</h4><p>:::tips<br>表示在单位时间内通过某个网络（或者信道、接口）的数据量<br />单位是b&#x2F;s，kb&#x2F;s，Mb&#x2F;s，Gb&#x2F;s，Tb&#x2F;s<br />吞吐量收网络的带宽或网络的额定速率的限制<br>:::<br><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668745766650-6c471803-b548-4f06-80a6-48440371b6a5.png#averageHue=%23f1f0f0&clientId=u6f83cc89-845a-4&from=paste&height=350&id=uc8d9d329&originHeight=437&originWidth=1207&originalType=binary&ratio=1&rotation=0&showTitle=false&size=149109&status=done&style=shadow&taskId=uf77a0498-7220-46de-9f03-710716207cf&title=&width=965.6" alt="image.png"></p>
+<p>:::tips<br>数据（报文、分组、比特流）从网络（链路）的一端传送到另一端所需要的时间。也叫延迟或者迟延。<br />单位是秒<br>:::<br>:::tips</p>
+<ol>
+<li>发送时延：从发送分组的第一个比特算起，到最后一个比特结束，发送所需要的时间取决于信道带宽和数据长度</li>
+<li>传播时延：取决于电磁波的传播速度和线路长度</li>
+<li>排队时延：等待输入输出链路可用的时间</li>
+<li>处理时延：检错、找出口<br>:::<br><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668777093842-703883c4-d8c7-4454-924f-039565a1e1d6.png#averageHue=%23f4efec&clientId=u2ead11d7-dd7f-4&from=paste&height=410&id=uc9f60043&originHeight=512&originWidth=1274&originalType=binary&ratio=1&rotation=0&showTitle=false&size=198060&status=done&style=shadow&taskId=u58784872-23a0-4587-ab40-50a7015c49f&title=&width=1019.2" alt="image.png"><br><a name="J5XCF"></a></li>
+</ol>
+<h4 id="时延带宽积"><a href="#时延带宽积" class="headerlink" title="时延带宽积"></a>时延带宽积</h4><p>:::tips<br>传播时延x带宽<br />管道党总此时此刻数据总量<br />相当于以bit为单位的链路长度<br>:::<br><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668777514187-a502dd83-e13e-4988-bc0e-f82e8e5cdef1.png#averageHue=%23e5cec1&clientId=u2ead11d7-dd7f-4&from=paste&height=192&id=uff19d7c6&originHeight=240&originWidth=834&originalType=binary&ratio=1&rotation=0&showTitle=false&size=64506&status=done&style=shadow&taskId=ubcbf4687-0cf0-4f24-9bb2-dcaf50c6e4c&title=&width=667.2" alt="image.png"><br><a name="P8wCe"></a></p>
+<h4 id="往返时延RTT"><a href="#往返时延RTT" class="headerlink" title="往返时延RTT"></a>往返时延RTT</h4><p>:::tips<br>从发送方发送数据到发送方接收到接收方的确认总共耗时<br />RTT越大在收到确认之前，可以发送的消息越多<br />包括</p>
+<ol>
+<li>末端处理时间</li>
+<li>传播延时*2&#x3D;往返传播时延<br>:::<br><a name="VHXRm"></a></li>
+</ol>
+<h4 id="利用率"><a href="#利用率" class="headerlink" title="利用率"></a>利用率</h4><ol>
+<li>信道利用率：有数据通过的时间&#x2F;（有+无）数据通过的时间</li>
+<li>网络利用率：信道利用率加权平均<br>:::tips<br>利用率接近于1时时延急剧增大<br>:::<br><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668829215586-c9a3aaf4-a1e2-44d4-9f18-2f475fe660ff.png#averageHue=%23f9f9f9&clientId=u1e5f9f3f-cc28-4&from=paste&height=193&id=u91cc0104&originHeight=241&originWidth=377&originalType=binary&ratio=1&rotation=0&showTitle=false&size=29436&status=done&style=shadow&taskId=u01401652-de71-49ca-b836-9f1ff5abc35&title=&width=301.6" alt="image.png"><br><a name="QtcGI"></a></li>
+</ol>
+<h2 id="计算机网络结构"><a href="#计算机网络结构" class="headerlink" title="计算机网络结构"></a>计算机网络结构</h2><p><a name="zsjje"></a></p>
+<h3 id="分层"><a href="#分层" class="headerlink" title="分层"></a>分层</h3><p><a name="oHEzC"></a></p>
+<h4 id="分层的原因"><a href="#分层的原因" class="headerlink" title="分层的原因"></a>分层的原因</h4><p>:::tips<br>发送文件前要进行的工作</p>
+<ol>
+<li>发起信息通讯的主机必须先把数据通信的通路激活</li>
+<li>告诉网络如何识别目的主机</li>
+<li>发起通信的主机要查明目的主机是否开机，是否与网络连接正常</li>
+<li>发起通讯的计算机要弄清楚，对方计算机中的文件管理程序是否已经做好准备工作<ol>
+<li>是否同意接受文件</li>
+<li>是否有空间存储</li>
+</ol>
+</li>
+<li>确保差错和意外能够被解决<ol>
+<li>传送错误</li>
+<li>传重复</li>
+<li>传输丢失</li>
+</ol>
+</li>
+<li>……..<br>:::<br><a name="hvczO"></a></li>
+</ol>
+<h4 id="分层的原则"><a href="#分层的原则" class="headerlink" title="分层的原则"></a>分层的原则</h4><p>:::tips<br>分层的基本原则</p>
+<ol>
+<li>各层之间相互独立，每层只实现一种相对独立的功能</li>
+<li>镁层之间界面清晰自然，易于理解，相互交流尽可能少</li>
+<li>结构上可分隔开。每层都采用最合适的技术来实现</li>
+<li>报纸下层对上层的独立性，上层单项使用下层提供的服务</li>
+<li>整个分层结构应该能促进标准化工作<br>:::<br><a name="omU3v"></a></li>
+</ol>
+<h4 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h4><p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668831909512-297160e9-ac7f-4b5c-8296-cf44f948a0ea.png#averageHue=%23eaeaea&clientId=u1e5f9f3f-cc28-4&from=paste&height=377&id=u8de99b4f&originHeight=471&originWidth=731&originalType=binary&ratio=1&rotation=0&showTitle=false&size=110893&status=done&style=shadow&taskId=uc4bcdb13-597c-4536-8841-23c9d2192a8&title=&width=584.8" alt="image.png"><br>:::tips</p>
+<ol>
+<li><p>实体：第n层中的活动元素称为n曾层实体，同一层的实体称为对等实体</p>
+</li>
+<li><p>协议：为对等实体数据交换而建立的标准、规则或者约定沉称为网络协议（水平）</p>
+<ol>
+<li>语法：规定传输数据的格式</li>
+<li>语义：规定所要完成的功能</li>
+<li>同步：规定各种操作的顺序</li>
+</ol>
+</li>
+<li><p>接口(访问服务点SAP)：上层使用下层服务的入口</p>
+</li>
+<li><p>服务：下层为上层提供的功能调用（垂直）<br>:::<br><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668832458344-712e344c-d77e-40c7-8c1a-ee4784009848.png#averageHue=%23eecfbc&clientId=u1e5f9f3f-cc28-4&from=paste&height=301&id=u3ae44941&originHeight=376&originWidth=729&originalType=binary&ratio=1&rotation=0&showTitle=false&size=58185&status=done&style=shadow&taskId=u13f558c2-b761-46c8-a63b-056b285a425&title=&width=583.2" alt="image.png"><br>:::tips</p>
+</li>
+<li><p>PCI：协议控制信息：控制协议操作的信息</p>
+</li>
+<li><p>SDU：服务数据单元：为完成用户操作而传输的信息</p>
+</li>
+<li><p>PDU：协议数据单元：对等层次之间传输数据的单位<br>:::<br><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668832724916-c4dc9b7f-6ff1-47e3-a785-3ca28bcc8cef.png#averageHue=%23e8e5e5&clientId=u1e5f9f3f-cc28-4&from=paste&height=239&id=uc627ab49&originHeight=299&originWidth=1061&originalType=binary&ratio=1&rotation=0&showTitle=false&size=218481&status=done&style=shadow&taskId=u03bf33a7-6b71-4459-914f-243bb47dbb0&title=&width=848.8" alt="image.png"><br><a name="stqOI"></a></p>
+</li>
+</ol>
+<h3 id="分层模型"><a href="#分层模型" class="headerlink" title="分层模型"></a>分层模型</h3><p>:::tips</p>
+<ol>
+<li>7层OSI参考模型（法定标准）</li>
+<li>4层TCP&#x2F;IP参考模型（事实标准）<br>:::<br><a name="xJy0X"></a></li>
+</ol>
+<h4 id="OSI参考模型（重要）"><a href="#OSI参考模型（重要）" class="headerlink" title="OSI参考模型（重要）"></a>OSI参考模型（重要）</h4><p>:::tips<br>为了支持异构网络系统的互联互通<br />国际标准化组织（ISO）在1984年提出开放系统互联（OSI）参考模型<br>:::<br><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668838134210-b3e11db7-6ecb-42f1-ab2f-455d1861ce86.png#averageHue=%23ebcdbc&clientId=u1e5f9f3f-cc28-4&from=paste&height=355&id=udf2f4aa7&originHeight=444&originWidth=454&originalType=binary&ratio=1&rotation=0&showTitle=false&size=90028&status=done&style=shadow&taskId=u20defa78-0952-4f93-be49-f1fa85c351f&title=&width=363.2" alt="image.png"><br />发送端每一层都会对信息进行一个包装<br />接收端会逐层拆掉包装<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668839028528-71dce89a-f599-4cb9-bb0b-33f62b116dc1.png#averageHue=%23ece4da&clientId=u1e5f9f3f-cc28-4&from=paste&height=713&id=ufcb78ad3&originHeight=891&originWidth=1920&originalType=binary&ratio=1&rotation=0&showTitle=false&size=427226&status=done&style=shadow&taskId=u76ae3ff4-0344-48cc-9c4d-44cac72a8f1&title=&width=1536" alt="image.png"><br /><strong>协议是为了功能服务的</strong></p>
+<ol>
+<li><strong>应用层</strong>：用户与网络交互的界面，能和用户产生流量的程序<ol>
+<li>协议：</li>
+<li>文件传输（FTP）</li>
+<li>电子邮件（SMTP）</li>
+<li>万维网（HTTP）</li>
+<li>……</li>
+</ol>
+</li>
+<li><strong>表示层</strong>：用于处理在两个通信系统中交换信息的表示方式（语法，语义）<ol>
+<li>功能：数据格式转换</li>
+<li>数据加密解密</li>
+<li>数据的压缩和恢复</li>
+<li>协议：JPEG\ASCLL</li>
+</ol>
+</li>
+<li><strong>会话层</strong>：像表示层的实体&#x2F;用户提供建立连接并在连接上有序地传递数据。会话也是建立同步（SYN）<ol>
+<li>功能：建立、管理、终止会话</li>
+<li>使用校验点可以在会话在失效时从校验点&#x2F;同步点回复通信，实现数据同步。（传输大文件）</li>
+<li>协议：ADSP、ASP</li>
+</ol>
+</li>
+<li><strong>传输层：</strong>负责主机中两个进程之间的通信，端到端的通信传输单位是报文段，用户数据报<ol>
+<li>功能：可靠传输、不可靠传输</li>
+<li>差错控制</li>
+<li>流量控制</li>
+<li>复用分用<ol>
+<li>复用：多个应用层进程可同时使用下面运输层的服务</li>
+<li>分用：运输层把收到的信息分别交付给上面应用层中相应的进程</li>
+</ol>
+</li>
+<li>协议：TCP&#x2F;UDP</li>
+</ol>
+</li>
+<li><strong>网络层（IP层、网际层）：</strong>主要任务是把分组从源端传到目的端，为分组交换网上的不同主机提供服务。网络层传输单位时数据报。<ol>
+<li>功能：路由选择（最佳路由）</li>
+<li>流量控制</li>
+<li>差错控制（校验）</li>
+<li>拥塞控制：如果所有节点都来不及接受分组，而要丢弃大量分组，网络就处于拥塞状态。因此要采取一些措施缓解拥塞</li>
+<li>协议：IP、IPX、ICMP、IGMP、ARP、RARP、OSPF</li>
+</ol>
+</li>
+<li><strong>数据链路层：</strong>主要任务时把网络层传下载的数据包组装成帧，传输单位是帧。<ol>
+<li>功能成帧（定义帧的开始和结束）</li>
+<li>差错控制 帧错+位错</li>
+<li>流量控制</li>
+<li>访问（接入）控制  控制对信道的访问</li>
+<li>协议：SDLC、HDLC、PPP、STP</li>
+</ol>
+</li>
+<li><strong>物理层</strong>：在物理媒体上实现比特流透明传输	单位是比特<ol>
+<li>透明传输：不管传输什么样的比特组合，都能在链路上传送</li>
+<li>功能：定义接口特性</li>
+<li>定义传输模式 单工（只能有一个接收方一个发送方）、半双工（双方都可以发送和接受，但是同一时间只能有一个接收方和发送方）、双工（双方可以同时发送和接受）</li>
+<li>定义传输速率</li>
+<li>比特同步</li>
+<li>比特编码曼彻斯特编码</li>
+<li>协议：Pj45、802.3<br><a name="Ucv5Z"></a></li>
+</ol>
+</li>
+</ol>
+<h4 id="TCP-IP参考模型（事实标准）"><a href="#TCP-IP参考模型（事实标准）" class="headerlink" title="TCP&#x2F;IP参考模型（事实标准）"></a>TCP&#x2F;IP参考模型（事实标准）</h4><p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668843570715-e3192cc1-47e6-4dcf-b3f5-5deb63a189c7.png#averageHue=%23b57d33&clientId=u1e5f9f3f-cc28-4&from=paste&height=326&id=u42e57244&originHeight=408&originWidth=1101&originalType=binary&ratio=1&rotation=0&showTitle=false&size=159039&status=done&style=shadow&taskId=ua328173f-0c0d-4215-a231-1a6a0ca0c27&title=&width=880.8" alt="image.png"><br><a name="cBqqF"></a></p>
+<h4 id="五层参考模型（考试）"><a href="#五层参考模型（考试）" class="headerlink" title="五层参考模型（考试）"></a>五层参考模型（考试）</h4><p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668844133859-ffd78674-476e-4b62-a60d-1e5939f37e96.png#averageHue=%23eae2de&clientId=u1e5f9f3f-cc28-4&from=paste&height=396&id=udd402937&originHeight=495&originWidth=1152&originalType=binary&ratio=1&rotation=0&showTitle=false&size=219848&status=done&style=shadow&taskId=ud095c01b-8642-4d0b-b19f-e37ffaf2bb0&title=&width=921.6" alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668844540420-6c7fa706-47d1-4852-b49a-08bf3cf007ce.png#averageHue=%23ebe4db&clientId=u1e5f9f3f-cc28-4&from=paste&height=382&id=u67f2404d&originHeight=477&originWidth=1236&originalType=binary&ratio=1&rotation=0&showTitle=false&size=171237&status=done&style=shadow&taskId=u7aacdeae-2786-492a-9fc3-1eb1d6c9d88&title=&width=988.8" alt="image.png"><br /><strong>过程</strong><br>:::tips</p>
+<ol>
+<li>数据+应用层控制信息&#x3D;报文</li>
+<li>报文切分成段+传输层信息&#x3D;报文段</li>
+<li>报文段+网络层控制信息&#x3D;数据报</li>
+<li>数据报过长可以进行切分 分组</li>
+<li>数据报加上头部尾部信息形成帧</li>
+<li>物理层将帧转化为比特进行传输<br>:::<br><a name="rhu9n"></a></li>
+</ol>
+<h1 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h1><p><a name="jzxlH"></a></p>
+<h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><p>:::tips<br>概念：物理层指的是如何解决如何在传输媒体上传输比特流，而不是指具体的传输介质。<br />任务：确定与传输媒体接口有关的特性。—&gt;定义标准<br>:::<br>:::tips</p>
+<ol>
+<li>机械特性：定义物理连接特性，规定物理连接时所采用的规格、接口形状、引线数目、引脚数量和排列情况</li>
+<li>电器特性：规定传输二进制位时，线路上信号的电压范围、阻抗匹配、传输速率和距离限制信息等</li>
+<li>功能特性：指明某条线上出现的某一电平表示何种意义，接口部件的信号线的用途</li>
+<li>规程特性（过程特性）：定义各条线路的工作规程和时序关系<br>:::<br><a name="Z6iCd"></a></li>
+</ol>
+<h2 id="数据通信"><a href="#数据通信" class="headerlink" title="数据通信"></a>数据通信</h2><p><strong>数据通讯模型</strong><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668847926477-fc2c8470-78e2-40b8-a3fa-0b912bec2f81.png#averageHue=%23ede8e5&clientId=u9eb3d25a-c446-4&from=paste&height=334&id=udbf6fc5f&originHeight=417&originWidth=1230&originalType=binary&ratio=1&rotation=0&showTitle=false&size=232487&status=done&style=shadow&taskId=u839de424-5b97-4bb2-be3d-a1f28cf960e&title=&width=984" alt="image.png"><br>:::tips</p>
+<ul>
+<li>通信的目的：是传送信息，如文字，图像和视频等。</li>
+<li>数据是指：传送信息的实体。</li>
+<li>信号是指：数据的电气或电磁表现。<ul>
+<li>数字信号：代表消息的信号是离散的</li>
+<li>模拟信号：代表消息的参数是连续的</li>
+</ul>
+</li>
+<li>信源：产生和发送信息的源头</li>
+<li>信宿：目的站、接收信息的终点</li>
+<li>信道：信号的传输媒介。一班用来表示向某一个方向传送信息的介质，因此一条通信线路往往包含一条发送信道和一条接收信道<br>:::<br><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668848502332-1bdf4d6d-2a1a-4603-9f18-9759773d0706.png#averageHue=%23f7f5f4&clientId=u9eb3d25a-c446-4&from=paste&height=134&id=ufb1cf427&originHeight=168&originWidth=1066&originalType=binary&ratio=1&rotation=0&showTitle=false&size=108031&status=done&style=shadow&taskId=uc713daa7-1ebf-4221-9bc0-9d1e6238269&title=&width=852.8" alt="image.png"><br /><strong>三种通信方式</strong></li>
+</ul>
+<ol>
+<li>单工通信：只有一个方向上的通信，仅需要一条信道</li>
+<li>半双工通信：通信双方都可以进行发送和接受，但是不能发送的同时接收，需要两条信道</li>
+<li>双工通信：通信双方可以同时发送和接收信息，需要两条信道</li>
+</ol>
+<p><strong>两种数据传输方式</strong></p>
+<ol>
+<li>串行传输：速度慢、费用低、适用于远距离传输</li>
+<li>并行传输：速度快、费用高、适合近距离传输（用于计算机内部的传输）</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668849461401-5b0d541c-7cdc-43bf-9d04-1f9cff580fe8.png#averageHue=%23f9f7f6&clientId=u9eb3d25a-c446-4&from=paste&height=319&id=u3fae2b7a&originHeight=399&originWidth=857&originalType=binary&ratio=1&rotation=0&showTitle=false&size=103119&status=done&style=shadow&taskId=u2a8fc86f-f0ed-441f-82be-14bbecfa6cf&title=&width=685.6" alt="image.png"><br><a name="kSYVb"></a></p>
+<h2 id="码元、波特、速率、带宽"><a href="#码元、波特、速率、带宽" class="headerlink" title="码元、波特、速率、带宽"></a>码元、波特、速率、带宽</h2><p><a name="TWgho"></a></p>
+<h3 id="码元"><a href="#码元" class="headerlink" title="码元"></a>码元</h3><p>:::tips<br>码元是指：用一个固定时长的信号波形(数字脉冲)，代表不同离散数值的基本波形，是数字通信中数字信号的计量单位，这个时长内的信号称为k进制码元，而该时长称为码元宽度。当码元的离散状态有M个时(M大于2)，此时码元为M进制码元。<br />1码元可以携带多个比特的信息量。<br />例如，在使用二进制编码时，只有两种不同的码元，一种代表0状态，另一种代表1状态。<br>:::<br><a name="zZlBD"></a></p>
+<h3 id="速率-1"><a href="#速率-1" class="headerlink" title="速率"></a>速率</h3><p>:::tips<br>速率也叫数据率，是指数据的传输速率，表示单位时间内传输的数据量。可以用码元传输速率和信息传输速率表示。</p>
+<ol>
+<li>码元传输速率:别名码元速率、波形速率、调制速率、符号速率等，它表示单位时间内数字通信系统所传输的码元个数(也可称为<strong>脉冲个数或信号化的次数</strong>)，单位是波特(Baud)。1波特表示数字通信系统每秒传输一个码元。这里的码元可以是多进制的，也可以是二进制的，但码元速率与进制数无关。<ol>
+<li>相当于一秒传输多少码元</li>
+</ol>
+</li>
+<li>信息传输速率:别名信息速率、比特率等，表示单位时间内数字通信系统传输的二进制码元个数(即比特数)单位是比特&#x2F;秒 (b&#x2F;s)<ol>
+<li>相当于一秒传输多少比特</li>
+</ol>
+</li>
+</ol>
+<p>关系:若一个码元携带n bit的信息量，则M Baud的码元传输速率所对应的信息传输速率为MXn bit&#x2F;s<br>:::<br><a name="Tz8jr"></a></p>
+<h3 id="带宽-1"><a href="#带宽-1" class="headerlink" title="带宽"></a>带宽</h3><p>:::tips<br>带宽:表示在单位时间内从网络中的某一点到另一点所能通过的“最高数据率”，常用来表示网络的通信线路所能传输数据的能力。单位是b&#x2F;s。<br>:::<br><a name="UdS35"></a></p>
+<h2 id="奈氏准则和香农定理"><a href="#奈氏准则和香农定理" class="headerlink" title="奈氏准则和香农定理"></a>奈氏准则和香农定理</h2><p><a name="BUKq6"></a></p>
+<h3 id="失真"><a href="#失真" class="headerlink" title="失真"></a>失真</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668908791860-eafa7dcd-4400-49a5-8be1-04bcba3d4c27.png#averageHue=%23f0efee&clientId=u2543dd23-8263-4&from=paste&height=502&id=u384fcfdb&originHeight=628&originWidth=1760&originalType=binary&ratio=1&rotation=0&showTitle=false&size=283647&status=done&style=shadow&taskId=u47ec5487-3e3d-40d2-950b-b3324b5d891&title=&width=1408" alt="image.png"><br>:::tips<br>影响是失真的程度</p>
+<ol>
+<li>码元传输速率（越快失真度越大）‘</li>
+<li>信号传输距离（距离越远受到干扰的时间越久）</li>
+<li>噪声干扰（越多越容易失真）</li>
+<li>传输媒体的质量（质量越差越容易失真）<br>:::<br><a name="ZhymA"></a></li>
+</ol>
+<h4 id="码间串扰"><a href="#码间串扰" class="headerlink" title="码间串扰"></a>码间串扰</h4><p>:::tips<br>码间串扰：接收端收到的信号波形失去了码元之间清晰的界限导致不能区分的现象。（码元间的干扰）<br>:::<br>信道带宽是信道能通过最高频和最低频之差<br />200HZ不能通过的原因是频率太低，到达另一端时信号已经损耗没了。<br />4000HZ不能通过的原因是接收端不能区分高电平和低电平之间的差异（码间串扰）<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668909458895-f64e2ab6-9b71-45b2-83d2-008887277a61.png#averageHue=%23e9e9e9&clientId=u2543dd23-8263-4&from=paste&height=266&id=u61bf746e&originHeight=333&originWidth=750&originalType=binary&ratio=1&rotation=0&showTitle=false&size=117952&status=done&style=shadow&taskId=uf730a78a-6956-4e6d-82c5-2829a9253d0&title=&width=600" alt="image.png"><br><a name="RzX36"></a></p>
+<h4 id="奈氏准则"><a href="#奈氏准则" class="headerlink" title="奈氏准则"></a>奈氏准则</h4><p>:::tips<br>奈氏准则：在理想低通(无噪声，带宽受限)条件下，为了避免码间串扰，极限码元传输速率为 2W Baud，W是信道带宽，单位是Hz。<br>:::<br><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668910652131-5cd12dbb-6744-4b4c-b4b7-30d1d1aa5d6c.png#averageHue=%23f0efef&clientId=u2543dd23-8263-4&from=paste&height=133&id=ue7c02e85&originHeight=166&originWidth=953&originalType=binary&ratio=1&rotation=0&showTitle=false&size=60806&status=done&style=shadow&taskId=u26e2f499-e3d9-4ad5-875e-a9a37db1d5b&title=&width=762.4" alt="image.png"><br>:::tips</p>
+<ol>
+<li>在任何信道中，码元传输的速率是有上限的。若传输速率超过此上限，就会出现严重的码间串扰问题，使接收端对码元的完全正确识别成为不可能。</li>
+<li>信道的频带越宽(即能通过的信号高频分量越多)，就可以用更高的速率进行码元的有效传输</li>
+<li>奈氏准则给出了码元传输速率的限制，但并没有对信息传输速率给出限制。</li>
+<li>由于码元的传输速率受奈氏准则的制约，所以要提高数据的传输速率，就必须设法使每个码元能携带更多个比特的信息量，这就需要采用多元制的调制方法<br>:::<br><a name="QkcHs"></a></li>
+</ol>
+<h4 id="香农定理"><a href="#香农定理" class="headerlink" title="香农定理"></a>香农定理</h4><p>:::tips<br><strong>香农定理</strong>：在带宽受限且有噪声的信道中，为了不产生误差，信息的数据传输速率有上限值。<br /><strong>噪声</strong>存在于所有的电子设备和通信信道中。由于噪声随机产生，它的瞬时值有时会很大，因此噪声会使接收端对码元的判决产生错误。但是噪声的影响是相对的，若信号较强，那么噪声影响相对较小。因此，信噪比就很重要。<br>:::<br><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668911437472-0401212b-bd55-4d74-9d46-06e6adfa62f1.png#averageHue=%23eceae9&clientId=u2543dd23-8263-4&from=paste&height=94&id=u9a96115b&originHeight=118&originWidth=993&originalType=binary&ratio=1&rotation=0&showTitle=false&size=54385&status=done&style=shadow&taskId=ub891ad1e-4e12-4102-8244-5d443a80802&title=&width=794.4" alt="image.png"><br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1668912667225-4d9ad146-212e-4b61-afc1-00478e6aa989.png#averageHue=%23efefef&clientId=u2543dd23-8263-4&from=paste&height=195&id=u0b889fab&originHeight=244&originWidth=782&originalType=binary&ratio=1&rotation=0&showTitle=false&size=74685&status=done&style=shadow&taskId=u77372701-26ab-4703-9388-223f9693fa9&title=&width=625.6" alt="image.png"><br>:::tips</p>
+<ol>
+<li>信道的带宽或信道中的信噪比越大，则信息的极限传输速率就越高</li>
+<li>对一定的传输带宽和一定的信噪比，信息传输速率的上限就确定了。</li>
+<li>只要信息的传输速率低于信道的极限传输速率，就一定能找到某种方法来实现无差错的传输</li>
+<li>香农定理得出的为极限信息传输速率，实际信道能达到的传输速率要比它低不少。</li>
+<li>从香农定理可以看出，若信道带宽W或信噪比S&#x2F;N没有上限(不可能)，那么信道的极限信息传输速率也就没有上限。<br>:::<br><a name="IYcVP"></a></li>
+</ol>
+<h2 id="编码和调制"><a href="#编码和调制" class="headerlink" title="编码和调制"></a>编码和调制</h2><p>:::tips<br>信道上传送的信号有两种：</p>
+<ol>
+<li><strong>基带信号</strong>：将数字信号1和0直接用两种不同的电压表示，再送到<strong>数字信道</strong>上去传输(<strong>基带传输</strong>)。来自<strong>信源</strong>的信号，像计算机输出的代表各种文字或图像文件的数据信号都属于基带信号。基带信号就是发出的直接表达了要传输的信息的信号，比如我们说话的声波就是基带信号。</li>
+<li><strong>宽带信号</strong>：将基带信号进行调制后形成的频分复用模拟信号，再传送到<strong>模拟信道</strong>上去传输(<strong>宽带传输</strong>)。把基带信号经过载波调制后，把信号的频率范围搬移到较高的频段以便在信道中传输(即仅在一段频率范围内能够通过信道)。<br>:::<br>:::tips<br>在传输距离较<strong>近</strong>时，计算机网络采用<strong>基带传输</strong>方式(近距离衰减小，从而信号内容不易发生变化)<br />在传输距离较<strong>远</strong>时，计算机网络采用<strong>宽带传输</strong>方式(远距离衰减大，即使信号变化大也能最后过滤出来基带信号<br>:::<br>:::info<br>把数据转化成<strong>数字信号</strong>的是<strong>编码。</strong><br />把数据转化成<strong>模拟信号</strong>的是<strong>调制。</strong><br>:::<blockquote>
+<p>数字数据（数字发送器）	数字信号	编码<br>数字数据（调制器）		模拟信号	调制</p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>模拟数据（PCM编码器）数字信号	编码<br>模拟数据（放大器调制器）模拟信号	调制</p>
+</blockquote>
+<p><a name="xC21H"></a></p>
+<h3 id="编码方式"><a href="#编码方式" class="headerlink" title="编码方式"></a>编码方式</h3><p>数字数据编码为数字信号有以下几种编码方式</p>
+<ol>
+<li><strong>非归零编码（NRZ）</strong></li>
+<li><strong>曼彻斯特编码</strong></li>
+<li><strong>差分曼彻斯特编码</strong></li>
+<li>归零编码（RZ）</li>
+<li>反向不归零编码（NRZI）</li>
+<li>4B&#x2F;5B编码</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1669001303723-1746e739-93a8-4d65-86d4-0ff7165a5af6.png#averageHue=%23efefef&clientId=u25db527f-8459-4&from=paste&height=477&id=ufc864e02&originHeight=596&originWidth=1279&originalType=binary&ratio=1&rotation=0&showTitle=false&size=125821&status=done&style=shadow&taskId=u09404749-62d7-432c-a677-f3e8ee4cb1c&title=&width=1023" alt="image.png"><br><a name="xh0zN"></a></p>
+<h4 id="非归零编码"><a href="#非归零编码" class="headerlink" title="非归零编码"></a>非归零编码</h4><p>编码容易实现，但是没有检错功能，并且无法判断一个码元的开始和结束，以至于收发双方难以保持同步。<br />当使用非归零编码发送数据，如果发送一长条“1”的话那么信号就会是一个长条，难以知道是多少个1，是所以为了解决，那么就需要在建立一条信道，告诉接收端我的一个时钟周期是多少（多久是一个bit）<br><a name="sEqK3"></a></p>
+<h4 id="归零编码"><a href="#归零编码" class="headerlink" title="归零编码"></a>归零编码</h4><p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1669001489113-25666a48-3ec9-4bdb-ad32-772df5f09abf.png#averageHue=%23f1f1f1&clientId=u25db527f-8459-4&from=paste&height=91&id=uc9f732a7&originHeight=114&originWidth=941&originalType=binary&ratio=1&rotation=0&showTitle=false&size=15247&status=done&style=shadow&taskId=u618dd41b-bbfc-4324-9132-4669cd6146a&title=&width=752.8" alt="image.png"><br />信号在一个码元内都要归为零的编码方式<br />信道处于低电平的时间较多，相当于信贷没怎么使用，不推荐使用，利用率低。<br><a name="hiKYS"></a></p>
+<h4 id="反向不归零编码"><a href="#反向不归零编码" class="headerlink" title="反向不归零编码"></a>反向不归零编码</h4><p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1669001479291-51386fe0-64bc-41a9-8954-f34261da0119.png#averageHue=%23f2f2f2&clientId=u25db527f-8459-4&from=paste&height=86&id=u7f570190&originHeight=107&originWidth=869&originalType=binary&ratio=1&rotation=0&showTitle=false&size=15270&status=done&style=shadow&taskId=ub697ff28-de76-4480-9676-35dada18456&title=&width=695.2" alt="image.png"><br />信号电平反转表示0，信号点评不变表示1.	<br />如果发送端发送数据全为0时，那么就非常好接受，但是如果全为1时那么覅那位不发生跳变，很难进行接收。还是要建立一个新的信道，规定一个时钟周期有多长。<br><a name="hYgCt"></a></p>
+<h4 id="曼彻斯特编码"><a href="#曼彻斯特编码" class="headerlink" title="曼彻斯特编码"></a>曼彻斯特编码</h4><p>:::tips<br>优秀的编码，不需要别的信道进行同步，<strong>自同步，</strong>根据信号就能判断出来数据是什么，不用计算时钟周期&#x2F;<br />将一个码元分成两个时间相等的间隔，前一个间隔为低电平后一个间隔为高电平表示码元1，码元0正好相反。也可以使用完全相反的规定。<br />编码的特点是<strong>每一个码元内进行一次电平跳变</strong>，中间的信号既可以作为<strong>时钟信号</strong>（用于同步），又可以作为<strong>数据信号</strong>，但是它所占用的带宽长度就<strong>是原始基带带宽的两倍</strong>。<br>:::<br><a name="w6KR6"></a></p>
+<h4 id="差分曼彻斯特编码"><a href="#差分曼彻斯特编码" class="headerlink" title="差分曼彻斯特编码"></a>差分曼彻斯特编码</h4><p>:::tips<br>常用于局域网的传输		同1异0<br />若为1那么前一个码元的后半段与后一个码元的前半段电平相同，若为0则相反。<br /><strong>自同步</strong><br />抗干扰性<strong>强于</strong>曼彻斯特编码。<br />看开始边界有没有跳变<br>:::<br><a name="fu1kk"></a></p>
+<h4 id="4B-5B编码"><a href="#4B-5B编码" class="headerlink" title="4B&#x2F;5B编码"></a>4B&#x2F;5B编码</h4><p>:::tips<br>bit流中插入额外的比特来打破一连串的1或者0，就是用五个bit来编码4个bit的数据，再传给接收方传输效率只有80%。<br>:::<br><a name="xVPLd"></a></p>
+<h3 id="调制方式"><a href="#调制方式" class="headerlink" title="调制方式"></a>调制方式</h3><p>数字数据调制技术在发送端将数字信号转换为模拟信号，而在接收端将模拟信号还原为数字信号，分别对应于调制解调器的调制和解调过程。</p>
+<ol>
+<li>调幅（2ASK）</li>
+<li>调频（2FSK）</li>
+<li>调相（2PSK）</li>
+<li>调幅+调相（QAM）</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1669003237842-c5dad922-5425-4bbc-819a-b813ec822279.png#averageHue=%23ededed&clientId=u25db527f-8459-4&from=paste&height=326&id=u47227062&originHeight=408&originWidth=769&originalType=binary&ratio=1&rotation=0&showTitle=false&size=122319&status=done&style=shadow&taskId=u09fdce8e-b643-4db2-97c0-8518c7de07e&title=&width=615.2" alt="image.png"><br><a name="SYC0D"></a></p>
+<h3 id="解调"><a href="#解调" class="headerlink" title="解调"></a>解调</h3><ol>
+<li><p>抽样：对模拟信号进行扫描，把时间连续的信号变成离散的数字信号<br>:::info<br>为了抽样取得的离散信号能够无失真的代表被抽样的模拟数据需要采样定理进行采样。<br /><strong>采样频率&gt;&#x3D;2*最高信号频率</strong><br>:::</p>
+</li>
+<li><p>量化：把抽样取得的电平幅值按照一定的分级度，转化为对应的数字值。并取整数。这就把连续的电平幅值，转化为离散的数字信号。</p>
+</li>
+<li><p>把量化的结果转化为二进制编码<br><a name="yRxqF"></a></p>
+</li>
+</ol>
+<h2 id="传输介质"><a href="#传输介质" class="headerlink" title="传输介质"></a>传输介质</h2><p>:::tips<br>传输介质也称传输媒体&#x2F;传输媒介，它就是数据传输系统中在发送设备和接收设备之间的物理通路。<br /><strong>传输媒体并不是物理层</strong>。传输媒体在物理层的下面，因为物理层是体系结构的第一层，因此有时称传输媒体为0层。在传输媒体中传输的是信号，但传输媒体并不知道所传输的信号代表什么意思但物理层规定了<strong>电气特性</strong>，因此能够识别所传送的比特流。<br>:::<br>传输介质：</p>
+<ol>
+<li>导向性传输介质：电磁波被导向沿着固体媒介（铜丝，光纤）传播。</li>
+<li>非导向型传输介质：自由空间，介质可以是空气、真空、海水等。<br><a name="cHlvM"></a></li>
+</ol>
+<h3 id="导向性传输介质"><a href="#导向性传输介质" class="headerlink" title="导向性传输介质"></a>导向性传输介质</h3><p><a name="knjxY"></a></p>
+<h4 id="双绞线"><a href="#双绞线" class="headerlink" title="双绞线"></a>双绞线</h4><p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1669025738607-8fb96f7f-07b5-4f21-9c79-9fbc1200071b.png#averageHue=%23cfcfcf&clientId=u4e578d78-5484-4&from=paste&height=155&id=u13756b66&originHeight=194&originWidth=712&originalType=binary&ratio=1&rotation=0&showTitle=false&size=70564&status=done&style=shadow&taskId=u28ca5ef4-8a5c-4576-ab1b-9a454b18983&title=&width=569.6" alt="image.png"><br />双绞线是是古老又常用的传输介质、是由两根采用一定规则并排铰合的、相互绝缘的铜导线组成。<br />绞合可以减少对相邻导线的电磁干扰。<br>:::tips<br>双绞线价格便宜，是最常用的传输介质之一，在局域网和传统电话网中普遍使用。模拟传输和数字传输都可以使用双绞线，其通信距离一般为几公里到数十公里。距离太远时，对于模拟传输，要用<strong>放大器放大衰减的信号</strong>;对于数字传输，要用<strong>中继器将失真的信号整形</strong>。<br>:::<br><a name="jjrLW"></a></p>
+<h4 id="同轴电缆"><a href="#同轴电缆" class="headerlink" title="同轴电缆"></a>同轴电缆</h4><p>:::tips<br>同轴电缆由导体铜质芯线、绝缘层、网状编织屏蔽层和塑料外层构成。按特性阻抗数值的不同，通常将同轴电缆分为两类:50Q同轴电缆和750同轴电缆。</p>
+<ol>
+<li>50Q同轴电缆主要用于传送基带数字信号，又称为<strong>基带同轴电缆</strong>，它在局域网中得到广泛应用</li>
+<li>750同轴电缆主要用于传送宽带信号，又称为<strong>宽带同轴电缆</strong>，它主要用于有线电视系统<br>:::<br><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1669026045435-e9db5a7d-e135-44db-a9bb-853f122a8528.png#averageHue=%23bbbbbb&clientId=u4e578d78-5484-4&from=paste&height=126&id=u1a70c2b4&originHeight=157&originWidth=594&originalType=binary&ratio=1&rotation=0&showTitle=false&size=47553&status=done&style=shadow&taskId=ud2c81436-89b0-42f4-829f-4a28c2b3fb1&title=&width=475.2" alt="image.png"><br><a name="q9hTE"></a></li>
+</ol>
+<h4 id="光纤"><a href="#光纤" class="headerlink" title="光纤"></a>光纤</h4><p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1669026315327-9b531a5d-798d-4f27-85ee-6966dc1b6c5d.png#averageHue=%23e5e5e5&clientId=u4e578d78-5484-4&from=paste&height=192&id=u682e763b&originHeight=240&originWidth=816&originalType=binary&ratio=1&rotation=0&showTitle=false&size=65248&status=done&style=shadow&taskId=u8ce6de0f-b275-4c6d-a76a-79d82546b6e&title=&width=652.8" alt="image.png"><br>:::tips<br>光纤通信就是利用光导纤维(简称光纤)传递光脉冲来进行通信。有光脉冲表示1，无光脉冲表示0。而可见光的频率大约是108MHz，因此光纤通信系统的带宽<strong>远远大于</strong>目前其他各种传输媒体的带宽。<br>:::<br>:::tips<br>光纤主要由纤芯(实心的!)和包层构成，光波通过纤芯进行传导。<br />包层较纤芯有较低的折射率。当光线从高折射率的介质射向低折射率的介质时，其折射角将大于入射角。因此，如果入射角足够大，就会出现全反射，即光线碰到包层时候就会折射回纤芯、这个过程不断重复，光也就沿着光纤传输下去。<br>:::</p>
+<ol>
+<li>多模光纤<ol>
+<li>纤芯可以传输多条光线<img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1669026491898-405d38cf-13a3-4984-a203-1c9afacd1693.png#averageHue=%23ebebeb&clientId=u4e578d78-5484-4&from=paste&height=110&id=uf9aaf34c&originHeight=137&originWidth=811&originalType=binary&ratio=1&rotation=0&showTitle=false&size=35804&status=done&style=shadow&taskId=ucf5d5404-4bb6-4ad6-8c19-08fcd1982f9&title=&width=648.8" alt="image.png"></li>
+</ol>
+</li>
+<li>单模光纤<ol>
+<li>纤芯非常细，只传递一条光波，相当于直接射到接收端，损耗很小<img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1669026568800-32bcce27-fe63-4b58-9a9d-f68b765d0742.png#averageHue=%23ededed&clientId=u4e578d78-5484-4&from=paste&height=99&id=u67ad3300&originHeight=124&originWidth=826&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17375&status=done&style=shadow&taskId=u475b881b-da03-456e-a010-a81f0b0303a&title=&width=660.8" alt="image.png"></li>
+</ol>
+</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1669026623295-fca6c6ad-11a7-4748-a458-4639a24df073.png#averageHue=%23edeee9&clientId=u4e578d78-5484-4&from=paste&height=274&id=u25a6e47b&originHeight=342&originWidth=1224&originalType=binary&ratio=1&rotation=0&showTitle=false&size=185895&status=done&style=shadow&taskId=u8b4d41ed-be07-458b-80fe-deea784529c&title=&width=979.2" alt="image.png"></p>
+<p>特点：</p>
+<ol>
+<li>传输损耗小，中继器距离长，对远距离传输十分经济</li>
+<li>抗雷电，抗电磁干扰好。</li>
+<li>无串音干扰，保密性好，不易被窃听或者截取数据</li>
+<li>体积小，重量轻</li>
+</ol>
+<p><a name="YQUYs"></a></p>
+<h3 id="非导向性传输介质"><a href="#非导向性传输介质" class="headerlink" title="非导向性传输介质"></a>非导向性传输介质</h3><ol>
+<li><p>无线电波：向所有方向传播、<br>:::tips<br>穿透能力较强，可以传递远距离，多用于通信领域<br>:::</p>
+</li>
+<li><p>微波：信号沿着固定方向传播<br>:::tips<br>通信频率高，频段范围宽，数据率很高</p>
+</li>
+<li><p>地面微波接力通信</p>
+</li>
+<li><p>卫星通信</p>
+<ol>
+<li>通信容量大</li>
+<li>距离远</li>
+<li>覆盖广</li>
+<li>广播通信、多地址通信</li>
+<li>缺点：传播延时长、受气候影响、误码率高、成本高<br>:::</li>
+</ol>
+</li>
+<li><p>红外线、激光：信号沿着固定方向传播<br>:::tips<br>把要传输的信号转化为各自的信号形式、红外光信号、激光信号、再向空中传播。<br>:::<br><a name="Vvzgq"></a></p>
+</li>
+</ol>
+<h2 id="物理层设备"><a href="#物理层设备" class="headerlink" title="物理层设备"></a>物理层设备</h2><p><a name="FNQBb"></a></p>
+<h3 id="中继器"><a href="#中继器" class="headerlink" title="中继器"></a>中继器</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1669027506622-f81de035-2d71-4c52-81e1-f416779ea4f6.png#averageHue=%23f4ede9&clientId=u4e578d78-5484-4&from=paste&height=107&id=u1ecf3ad7&originHeight=134&originWidth=437&originalType=binary&ratio=1&rotation=0&showTitle=false&size=39255&status=done&style=shadow&taskId=u0bef322a-4b88-4e07-ad5a-7db1fd9785b&title=&width=349.6" alt="image.png"><br>:::tips<br>原因：由于距离较远，信号传输有损失，衰减到一定程度就会无造成失真，因此导致接收错误。<br />作用：对信号进行再生和还原，对衰减的信号进行放大，保持原数据相同，增大传输距离延长网络长度。<br>:::<br>:::tips<br>中继器的两端</p>
+<ol>
+<li>是网段，而不是子网，适用于两个相同的两类网络连接，两个网段速率要相同。</li>
+<li>中继器只将任何电缆段上的数据发送到另一段电缆上，它仅作用于信号的电气部分，并不管数据中是否有错误数据或不适于网段的数据。</li>
+<li>两端可以连相同媒体，可以连不同媒体</li>
+<li>中继器两端一定是同一个协议<br>:::<br>:::tips<br><strong>5-4-3规则</strong>：网络标准中都对信号的延迟范围作了具体的规定，因而中继器只能在规定的范用内进行，否则会网络故障。<br>:::<br><a name="iq3Gt"></a></li>
+</ol>
+<h3 id="集线器（多口中继器）"><a href="#集线器（多口中继器）" class="headerlink" title="集线器（多口中继器）"></a>集线器（多口中继器）</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1669027923836-8647deb2-e272-4cfe-a941-e0124fe12f27.png#averageHue=%23efefef&clientId=u4e578d78-5484-4&from=paste&height=244&id=u1e99cf50&originHeight=305&originWidth=500&originalType=binary&ratio=1&rotation=0&showTitle=false&size=63123&status=done&style=shadow&taskId=u70bce17c-094a-451c-a517-f1f17b3e615&title=&width=400" alt="image.png"><br>:::tips<br>集线器的功能：对信号进行再生放大转发，对衰减的信号进行放大，接着转发到其他所有(除输入端口外)处于工作状态的端口上，以增加信号传输的距离，延长网络的长度。不具备信号的定向传送能力，是一个共享式设备<br>:::<br><a name="Gj7u8"></a></p>
+<h1 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h1><p>:::tips<br>基本概念</p>
+<ol>
+<li><p>节点：主机、路由器</p>
+</li>
+<li><p>链路：网络中两个节点之间的物理通道，链路的传输介质分为有线链路、无线链路。</p>
+</li>
+<li><p>数据链路：网络中两个节点的逻辑通道，把实现控制数据传输协议的硬件和软件加到链路上就构成数据链路。</p>
+</li>
+<li><p>帧：链路层的协议数据单元、封装网络层的数据报。<br>:::<br>:::tips<br>主要功能：<br />数据链路层在物理层提供服务的基础上向网络层提供服务，其最基本的服务是将源自网络层来的数据可靠地传输到相邻节点的目标机网络层。其主要作用是加强物理层传输原始比特流的功能，将物理层提供的可能出错的物理连接改造成为逻辑上无差错的数据链路，使之对网络层表现为一条无差错的链路。</p>
+</li>
+<li><p>为网络层提供服务，无确认无连接服务，有确认无连接服务，有确认面向连接服务</p>
+</li>
+<li><p>链路管理：连接的建立，维持，释放。<br>:::</p>
+</li>
+</ol>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 Luoyudi&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Luoyudi
+        </div>
+        <div>
+            Based on the <a href="https://hexo.io">Hexo Engine</a> &amp;
+            <a href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

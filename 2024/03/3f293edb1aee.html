@@ -1,0 +1,609 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title> | Luoyudi&#39;s Blog</title>
+    <meta name="author" content="Luoyudi" />
+    <meta name="description" content="This is a personal blog site that keeps track of various questions and my study notes." />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LUOYUDI&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LUOYUDI&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/28
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><a name="TS9O4"></a></p>
+<h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><p>面向对象的三大特征：</p>
+<ol>
+<li>封装</li>
+<li>继承</li>
+<li>多态<br><a name="kDswv"></a></li>
+</ol>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><p>:::tips<br>利用抽象数据类型将数据和基于数据的操作封装在一起，使其构成一个不可分割的独立实体。数据被保护在抽象数据类型的内部，尽可能地隐藏内部的细节，只保留一些对外接口使之与外部发生联系。用户无需知道对象内部的细节，但可以通过对象对外提供的接口来访问该对象。<br />优点:</p>
+<ul>
+<li>减少耦合: 可以独立地开发、测试、优化、使用、理解和修改</li>
+<li>减轻维护的负担: 可以更容易被程序员理解，并且在调试的时候可以不影响其他模块</li>
+<li>有效地调节性能: 可以通过剖析确定哪些模块影响了系统的性能</li>
+<li>提高软件的可重用性</li>
+<li>降低了构建大型系统的风险: 即使整个系统不可用，但是这些独立的模块却有可能是可用的<br>:::<br><a name="TZW7m"></a></li>
+</ul>
+<h2 id="继承（extends-）"><a href="#继承（extends-）" class="headerlink" title="继承（extends ）"></a>继承（extends ）</h2><p>:::tips<br>里氏替换原则：如果S是T的子类型，对于S类型的任意对象，如果将他们看作是T类型的对象，则对象的行为也理应与期望的行为一致。<br />父类引用指向子类对象称为 向上转型 。<br>:::<br><a name="FD9Tb"></a></p>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>:::tips<br>多态分为编译时多态和运行时多态:</p>
+<ul>
+<li>编译时多态主要指方法的重载</li>
+<li>运行时多态指程序中定义的对象引用所指向的具体类型在运行期间才确定</li>
+</ul>
+<p>运行时多态有三个条件:</p>
+<ul>
+<li>继承</li>
+<li>覆盖(重写)</li>
+<li>向上转型<br>:::</li>
+</ul>
+<p><a name="dpPCu"></a></p>
+<h2 id="泛化关系"><a href="#泛化关系" class="headerlink" title="泛化关系"></a>泛化关系</h2><p>用来描述继承关系，在 Java 中使用 extends 关键字。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1671331960285-b9964206-e199-433b-94a0-79e7a350c7cf.png#averageHue=%23f5f2e9&clientId=u53c07162-3929-4&from=paste&height=200&id=u82e13af4&originHeight=250&originWidth=229&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20434&status=done&style=shadow&taskId=u60bbe2a3-b53d-4c0d-be1b-1c2d6b11eee&title=&width=183.2" alt="image.png"><br><a name="ymc8Q"></a></p>
+<h2 id="实现关系"><a href="#实现关系" class="headerlink" title="实现关系"></a>实现关系</h2><p>用来实现一个接口，在 Java 中使用 implements 关键字。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1671331994537-9cccf6f1-374a-4704-a535-51611629ac18.png#averageHue=%23eae5bc&clientId=u53c07162-3929-4&from=paste&height=194&id=u408b9e32&originHeight=243&originWidth=200&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20488&status=done&style=shadow&taskId=ua80bfa7f-dc37-48c2-a414-32cbfa18498&title=&width=160" alt="image.png"><br><a name="cCzTw"></a></p>
+<h2 id="聚合关系"><a href="#聚合关系" class="headerlink" title="聚合关系"></a>聚合关系</h2><p>表示整体由部分组成，但是整体和部分不是强依赖的，整体不存在了部分还是会存在。<br />公司和员工属于聚合关系了，公司没了员工还在。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1671332038441-98a89bc8-2ba5-4ea9-8b46-da61c64b3be8.png#averageHue=%23f7f6ee&clientId=u53c07162-3929-4&from=paste&height=210&id=ue77350e3&originHeight=263&originWidth=443&originalType=binary&ratio=1&rotation=0&showTitle=false&size=30058&status=done&style=shadow&taskId=u00410d40-544d-4fe7-ba1b-1b5a22a4429&title=&width=354.4" alt="image.png"><br><a name="WgFaC"></a></p>
+<h2 id="组合关系"><a href="#组合关系" class="headerlink" title="组合关系"></a>组合关系</h2><p>和聚合不同，组合中整体和部分是强依赖的，整体不存在了部分也不存在了。<br />公司和部门，公司没了部门就不存在了。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1671332078325-2a59e327-21b2-401f-90e5-a852f6168698.png#averageHue=%23f6f5ec&clientId=u53c07162-3929-4&from=paste&height=211&id=u8845b61a&originHeight=264&originWidth=379&originalType=binary&ratio=1&rotation=0&showTitle=false&size=24839&status=done&style=shadow&taskId=ufb759871-0926-4e01-b934-4016064b91a&title=&width=303.2" alt="image.png"><br><a name="N5oKl"></a></p>
+<h2 id="关联关系"><a href="#关联关系" class="headerlink" title="关联关系"></a>关联关系</h2><p> 表示不同类对象之间有关联，这是一种静态关系，与运行过程的状态无关，在最开始就可以确定。因此也可以用 1 对 1、多对 1、多对多这种关联关系来表示。<br /><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1671332148810-835ec8ec-1696-4a66-b25a-dd77b0a53ee2.png#averageHue=%23e2dcb9&clientId=u53c07162-3929-4&from=paste&height=100&id=u2c2e1fbe&originHeight=125&originWidth=323&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14452&status=done&style=shadow&taskId=u2605f6e1-a909-4654-bdb7-921054fe340&title=&width=258.4" alt="image.png"><br><a name="HGwtY"></a></p>
+<h2 id="依赖关系"><a href="#依赖关系" class="headerlink" title="依赖关系"></a>依赖关系</h2><p>和关联关系不同的是，依赖关系是在运行过程中起作用的。A 类和 B 类是依赖关系主要有三种形式:</p>
+<ul>
+<li>A 类是 B 类中的(某中方法的)局部变量；</li>
+<li>A 类是 B 类方法当中的一个参数；</li>
+<li>A 类向 B 类发送消息，从而影响 B 类发生变化；</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/25709258/1671332234033-c4874a87-98dd-46d0-9e53-7509e4405c4d.png#averageHue=%23f6f4e7&clientId=u53c07162-3929-4&from=paste&height=233&id=u8aff1eb8&originHeight=291&originWidth=449&originalType=binary&ratio=1&rotation=0&showTitle=false&size=33830&status=done&style=shadow&taskId=uaf957721-e1f0-4635-acfc-5d714732727&title=&width=359.2" alt="image.png"></p>
+<p><a name="iWedZ"></a></p>
+<h1 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h1><p><a name="NGcKZ"></a></p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p><a name="PkTV6"></a></p>
+<h3 id="包装类型"><a href="#包装类型" class="headerlink" title="包装类型"></a>包装类型</h3><p>八个基本类型:</p>
+<ul>
+<li>boolean&#x2F;1</li>
+<li>byte&#x2F;8</li>
+<li>char&#x2F;16</li>
+<li>short&#x2F;16</li>
+<li>int&#x2F;32</li>
+<li>float&#x2F;32</li>
+<li>long&#x2F;64</li>
+<li>double&#x2F;64</li>
+</ul>
+<p>每个基本类型都有他的包装类，基本类型与其对应的包装类型之间的赋值使用自动装箱与拆箱完成。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Integer</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">2</span>;     <span class="comment">// 装箱</span></span><br><span class="line"><span class="type">int</span> <span class="variable">y</span> <span class="operator">=</span> x;         <span class="comment">// 拆箱</span></span><br></pre></td></tr></table></figure>
+<p><a name="kO3mZ"></a></p>
+<h3 id="缓存池"><a href="#缓存池" class="headerlink" title="缓存池"></a>缓存池</h3><p>new Integer(123) 与 Integer.valueOf(123) 的区别<br />new Integer(123)创建一个新对象<br />Integer.valueOf(123) 使用缓存池中的对象，多次调用取得同一个对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Integer</span> <span class="variable">x</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">123</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">Integer</span> <span class="variable">y</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">123</span>);</span><br><span class="line"></span><br><span class="line">System.out.println(x == y);    <span class="comment">// false</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">z</span> <span class="operator">=</span> Integer.valueOf(<span class="number">123</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">Integer</span> <span class="variable">k</span> <span class="operator">=</span> Integer.valueOf(<span class="number">123</span>);</span><br><span class="line"></span><br><span class="line">System.out.println(z == k);   <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>在 Java 8 中，Integer 缓存池的大小默认为 -128~127。<br />编译器会在缓冲池范围内的基本类型自动装箱过程调用 valueOf() 方法，因此多个 Integer 实例使用自动装箱来创建并且值相同，那么就会引用相同的对象。</p>
+<p>基本类型对应的缓冲池如下:</p>
+<ul>
+<li>boolean values true and false。boolean类型的true和false</li>
+<li>all byte values</li>
+<li>short values between -128 and 127</li>
+<li>int values between -128 and 127</li>
+<li>char in the range \u0000 to \u007F</li>
+</ul>
+<p><a name="uIIfh"></a></p>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p><a name="wkvrB"></a></p>
+<h3 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h3><p>string被声明为final，因此不可被继承<br />string内部使用char数组存储数据，数组也被声明为final，并且string内部没有改变value数组的方法，因此保证数组不变。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">String</span></span><br><span class="line">    <span class="keyword">implements</span> <span class="title class_">java</span>.io.Serializable, Comparable&lt;String&gt;, CharSequence &#123;</span><br><span class="line">    <span class="comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">char</span> value[];</span><br></pre></td></tr></table></figure>
+<p><a name="mcdRq"></a></p>
+<h3 id="不可变的好处"><a href="#不可变的好处" class="headerlink" title="不可变的好处"></a>不可变的好处</h3><ol>
+<li>可以缓存hash值</li>
+<li>string pool（字符串常量池）的需要</li>
+<li>安全性</li>
+<li>线程安全性<br><a name="US8Pm"></a></li>
+</ol>
+<h3 id="String-StringBuffer-and-StringBuilder"><a href="#String-StringBuffer-and-StringBuilder" class="headerlink" title="String, StringBuffer and StringBuilder"></a>String, StringBuffer and StringBuilder</h3><ol>
+<li>可变性</li>
+</ol>
+<ul>
+<li>string：不可变</li>
+<li>stringbuffer、stringbuilder可变</li>
+</ul>
+<ol start="2">
+<li>线程安全性</li>
+</ol>
+<ul>
+<li>string不可变，所以线程安全</li>
+<li>stringbuffer，可变所以线程不安全</li>
+<li>stringbuilder是线程安全，内部使用synchronized进行同步<br><a name="afvpt"></a></li>
+</ul>
+<h3 id="String-intern"><a href="#String-intern" class="headerlink" title="String.intern()"></a>String.intern()</h3><p>使用intern（）可以保证相同的字符串引用同一的内存对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line">System.out.println(s1 == s2);           <span class="comment">// false</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s3</span> <span class="operator">=</span> s1.intern();</span><br><span class="line">System.out.println(s1.intern() == s3);  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>如果采用下面这种方法进行创建字符串，将会自动放在String Pool（字符串常量池）中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s4</span> <span class="operator">=</span> <span class="string">&quot;bbb&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">s5</span> <span class="operator">=</span> <span class="string">&quot;bbb&quot;</span>;</span><br><span class="line">System.out.println(s4 == s5);  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p><a name="nh0Ag"></a></p>
+<h2 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h2><p><a name="hJJPb"></a></p>
+<h3 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h3><p>:::tips</p>
+<ol>
+<li>在将一个参数传入一个方法时，本质上是将对象的地址以值的方式传递到形参中。因此在方法中改变指针引用的对象，那么这两个指针此时指向的是完全不同的对象，一方改变其所指向对象的内容对另一方没有影响。</li>
+<li>但是如果在方法中改变对象的字段值会改变原对象该字段值，因为改变的是同一个地址指向的内容。<br>:::<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dog</span> &#123;</span><br><span class="line">    String name;</span><br><span class="line"></span><br><span class="line">    Dog(String name) &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    String <span class="title function_">getObjectAddress</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">super</span>.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PassByValueExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Dog</span> <span class="variable">dog</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">        System.out.println(dog.getObjectAddress()); <span class="comment">// Dog@4554617c</span></span><br><span class="line">        func(dog);</span><br><span class="line">        System.out.println(dog.getObjectAddress()); <span class="comment">// Dog@4554617c</span></span><br><span class="line">        System.out.println(dog.getName());          <span class="comment">// A</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">func</span><span class="params">(Dog dog)</span> &#123;</span><br><span class="line">        System.out.println(dog.getObjectAddress()); <span class="comment">// Dog@4554617c</span></span><br><span class="line">        dog = <span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">        System.out.println(dog.getObjectAddress()); <span class="comment">// Dog@74a14482</span></span><br><span class="line">        System.out.println(dog.getName());          <span class="comment">// B</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a name="msWnP"></a></li>
+</ol>
+<h3 id="float和double"><a href="#float和double" class="headerlink" title="float和double"></a>float和double</h3><p>:::tips<br>字面量1.1时double类型，不能直接赋值给float，因为这是向下转型。Java不能隐式向下转型，因为这样会使得精度变低。<br>:::<br><a name="pGxIy"></a></p>
+<h3 id="隐式转换"><a href="#隐式转换" class="headerlink" title="隐式转换"></a>隐式转换</h3><p>Java中进行二元与运算类型的提升规则</p>
+<ol>
+<li>整数运算：</li>
+</ol>
+<p>如果两个操作数有一个为long，则结果也为long；<br />没有long时，结果为int。即使操作数全为short、byte，结果也是int。<br />所以在进行运算时需要进行强转才能正确赋值，否则将会报错；但是如果使用+&#x3D;等符号，<br />浮点运算：<br />如果两个操作数有一个为double，则结果为double；<br />只有两个操作数都是float，则结果才为float。<br />注意：int 与 float 运算，结果为 float。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">short</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">a += <span class="number">1</span>;</span><br><span class="line">a = (<span class="type">short</span>) (a + <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p><a name="oYILE"></a></p>
+<h3 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h3><p>:::tips<br>从 Java 7 开始，可以在 switch 条件判断语句中使用 String 对象。<br />switch 不支持 long，是因为 switch 的设计初衷是对那些只有少数的几个值进行等值判断，如果值过于复杂，那么还是用 if 比较合适。<br>:::<br><a name="bDpx0"></a></p>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p><a name="uuQRp"></a></p>
+<h3 id="访问权限"><a href="#访问权限" class="headerlink" title="访问权限"></a>访问权限</h3><p>Java 中有三个访问权限修饰符: </p>
+<ol>
+<li>private（私有的）</li>
+<li>protected（保护的）</li>
+<li>public（公有的）</li>
+</ol>
+<p>如果不加访问修饰符，表示包级可见。<br>:::tips<br>可以对类或类中的成员(字段以及方法)加上访问修饰符。</p>
+<ul>
+<li>类可见表示其它类可以用这个类创建实例对象。</li>
+<li>成员可见表示其它类可以用这个类的实例对象访问到该成员；</li>
+</ul>
+<p>protected 用于修饰成员，表示在继承体系中成员对于子类可见，但是这个访问修饰符对于类没有意义。<br>:::<br><a name="VErVC"></a></p>
+<h3 id="抽象类和接口"><a href="#抽象类和接口" class="headerlink" title="抽象类和接口"></a>抽象类和接口</h3><ol>
+<li>抽象类</li>
+</ol>
+<p>抽象类和抽象方法使用abstract进行声明，抽象类一般包含抽象方法，抽象方法定位于抽象类中<br />抽象类不能被实例化，需要继承抽象类才能实例化其子类。</p>
+<ol start="2">
+<li>接口</li>
+</ol>
+<p>接口是抽象类的延申<br />在Java8以前：<br>:::tips<br>它可以看成是一个完全抽象的类，也就是说它不能有任何的方法实现。<br>:::<br>在Java8开始：<br>:::tips<br>接口也可以拥有默认的方法实现，这是因为不支持默认方法的接口的维护成本太高了。<br />在 Java 8 之前，如果一个接口想要添加新的方法，那么要修改所有实现了该接口的类。<br>:::<br>接口的成员(字段 + 方法)默认都是 public 的，并且不允许定义为 private 或者 protected。<br />接口的字段默认都是 static 和 final 的。（类的静态成员变量必须初始化）</p>
+<ol start="3">
+<li>比较<br>:::tips</li>
+</ol>
+<ul>
+<li>从设计层面上看，抽象类提供了一种 IS-A 关系，那么就必须满足里式替换原则，即子类对象必须能够替换掉所有父类对象。而接口更像是一种 LIKE-A 关系，它只是提供一种方法实现契约，并不要求接口和实现接口的类具有 IS-A 关系。</li>
+<li>从使用上来看，一个类可以实现多个。接口，但是不能继承多个抽象类。</li>
+<li>接口的字段只能是 static 和 final 类型的，而抽象类的字段没有这种限制。</li>
+<li>接口的成员只能是 public 的，而抽象类的成员可以有多种访问权限。<br>:::</li>
+</ul>
+<ol start="4">
+<li>使用选择</li>
+</ol>
+<p>使用接口：<br>:::tips</p>
+<ul>
+<li><p>需要让不相关的类都实现一个方法，例如不相关的类都可以实现 Compareable 接口中的 compareTo() 方法；</p>
+</li>
+<li><p>需要使用多重继承。<br>:::<br>使用抽象类：<br>:::tips</p>
+</li>
+<li><p>需要在几个相关的类中共享代码。</p>
+</li>
+<li><p>需要能控制继承来的成员的访问权限，而不是都为 public。</p>
+</li>
+<li><p>需要继承非静态和非常量字段。<br>:::<br><a name="rbufh"></a></p>
+</li>
+</ul>
+<h3 id="super"><a href="#super" class="headerlink" title="super"></a>super</h3><p>:::tips</p>
+<ul>
+<li>访问父类的构造函数: 可以使用 super() 函数访问父类的构造函数，从而委托父类完成一些初始化的工作。</li>
+<li>访问父类的成员: 如果子类重写了父类的中某个方法的实现，可以通过使用 super 关键字来引用父类的方法实现。<br>:::<br><a name="K2ZBY"></a></li>
+</ul>
+<h3 id="重写和重载"><a href="#重写和重载" class="headerlink" title="重写和重载"></a>重写和重载</h3><ol>
+<li>重写（override）</li>
+</ol>
+<p>存在于继承体系内部，子类实现了一个与父类相同的的方法（里氏替换原则）<br />满足两个条件</p>
+<ol>
+<li>子类的方法的访问权限必须大于等于父类的访问权限</li>
+<li>子类方法的返回值类型必须是父类方法的返回值类型，或者是返回值类型的的子类型</li>
+</ol>
+<p>使用注解@override可以让idea检查是否满足上面两个条件。</p>
+<ol start="2">
+<li>重载（overload）</li>
+</ol>
+<p>存在于同一个类中，指一个方法与已经存在的方法名称上相同，但是参数类型、个数、顺序至少有一个不同。<br />应该注意的是，返回值不同，其它都相同不算是重载。<br><a name="Xlv2a"></a></p>
+<h2 id="object通用方法"><a href="#object通用方法" class="headerlink" title="object通用方法"></a>object通用方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> Class&lt;?&gt; getClass()</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">native</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object obj)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">native</span> Object <span class="title function_">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title function_">notify</span><span class="params">()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title function_">notifyAll</span><span class="params">()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title function_">wait</span><span class="params">(<span class="type">long</span> timeout)</span> <span class="keyword">throws</span> InterruptedException</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">wait</span><span class="params">(<span class="type">long</span> timeout, <span class="type">int</span> nanos)</span> <span class="keyword">throws</span> InterruptedException</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">wait</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p><a name="KXZ9N"></a></p>
+<h3 id="equse"><a href="#equse" class="headerlink" title="equse()"></a>equse()</h3><ol>
+<li>等价关系<ol>
+<li><p>自反性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.equals(x); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对称性</p>
+</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.equals(y) == y.equals(x); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>传递性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (x.equals(y) &amp;&amp; y.equals(z))</span><br><span class="line">    x.equals(z); <span class="comment">// true;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一致性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 多次调用equse结果不变</span></span><br><span class="line">x.equals(y) == x.equals(y); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>与 null 的比较</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对任何不是 null 的对象 x 调用 x.equals(null) 结果都为 false</span></span><br><span class="line">x.equals(<span class="literal">null</span>); <span class="comment">// false;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>equals() 与 &#x3D;&#x3D;<br>:::tips</p>
+</li>
+</ol>
+<ul>
+<li>对于基本类型，&#x3D;&#x3D; 判断两个值是否相等，基本类型没有 equals() 方法。</li>
+<li>对于引用类型，&#x3D;&#x3D; 判断两个变量是否引用同一个对象，而 equals() 判断引用的对象是否等价。<br>:::<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Integer</span> <span class="variable">x</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">1</span>);</span><br><span class="line"><span class="type">Integer</span> <span class="variable">y</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">1</span>);</span><br><span class="line">System.out.println(x.equals(y)); <span class="comment">// true</span></span><br><span class="line">System.out.println(x == y);      <span class="comment">// false</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="3">
+<li>实现<br>:::tips</li>
+</ol>
+<ul>
+<li>检查是否为同一个对象的引用，如果是直接返回 true；</li>
+<li>检查是否是同一个类型，如果不是，直接返回 false；</li>
+<li>将 Object 对象进行转型；</li>
+<li>判断每个关键域是否相等。<br>:::<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EqualExample</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> x;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> y;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> z;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">EqualExample</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> z)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.x = x;</span><br><span class="line">        <span class="built_in">this</span>.y = y;</span><br><span class="line">        <span class="built_in">this</span>.z = z;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">        <span class="comment">// 判断是否为同一对象，如果是直接返回true</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span> == o) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">// 判断是否为同一类型，如果不是同一类型，直接返回false</span></span><br><span class="line">        <span class="keyword">if</span> (o == <span class="literal">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="comment">// 强转</span></span><br><span class="line">        <span class="type">EqualExample</span> <span class="variable">that</span> <span class="operator">=</span> (EqualExample) o;</span><br><span class="line">    	<span class="comment">// 判断每一个关键域</span></span><br><span class="line">        <span class="keyword">if</span> (x != that.x) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (y != that.y) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> z == that.z;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a name="UgSWt"></a></li>
+</ul>
+<h3 id="hashcode"><a href="#hashcode" class="headerlink" title="hashcode()"></a>hashcode()</h3><p>:::tips<br>hashCode() 返回散列值，而 equals() 是用来判断两个对象是否等价。等价的两个对象散列值一定相同，但是散列值相同的两个对象不一定等价。<br />在覆盖 equals() 方法时应当总是覆盖 hashCode() 方法，保证等价的两个对象散列值也相等。<br>:::</p>
+<ol>
+<li><p>cloneable<br>:::tips<br>clone() 是 Object 的 protected 方法，它不是 public，一个类不显式去重写 clone()，其它类就不能直接去调用该类实例的 clone() 方法。<br />当重写clone方法时，需要实现Cloneable接口。否则将会抛出异常CloneNotSupportedException。<br />应该注意的是，clone() 方法并不是 Cloneable 接口的方法，而是 Object 的一个 protected 方法。Cloneable 接口只是规定，如果一个类没有实现 Cloneable 接口又调用了 clone() 方法，就会抛出 CloneNotSupportedException。<br>:::</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CloneExample</span> <span class="keyword">implements</span> <span class="title class_">Cloneable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> a;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> b;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Object <span class="title function_">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">super</span>.clone();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>浅拷贝</p>
+</li>
+</ol>
+<p>拷贝对象和原始对象的引用类型引用同一个对象。<br />写法如上文</p>
+<ol start="3">
+<li>深拷贝</li>
+</ol>
+<p>拷贝对象和原始对象引用的是不同对象。<br />写法如下（clone应当具体对象具体分析来拷贝，比如下面就是拷贝数组）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DeepCloneExample</span> <span class="keyword">implements</span> <span class="title class_">Cloneable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span>[] arr;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">DeepCloneExample</span><span class="params">()</span> &#123;</span><br><span class="line">        arr = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">10</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            arr[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">set</span><span class="params">(<span class="type">int</span> index, <span class="type">int</span> value)</span> &#123;</span><br><span class="line">        arr[index] = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">get</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> arr[index];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> DeepCloneExample <span class="title function_">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException &#123;</span><br><span class="line">        <span class="type">DeepCloneExample</span> <span class="variable">result</span> <span class="operator">=</span> (DeepCloneExample) <span class="built_in">super</span>.clone();</span><br><span class="line">        <span class="comment">// 重新new出来新的数组对象</span></span><br><span class="line">        result.arr = <span class="keyword">new</span> <span class="title class_">int</span>[arr.length];</span><br><span class="line">        <span class="comment">// 将对象初始化为原始数组中的数据</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            result.arr[i] = arr[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 返回新的数组</span></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>clone的替代方案<br>:::tips<br> 使用 clone() 方法来拷贝一个对象即复杂又有风险，它会抛出异常，并且还需要类型转换。Effective Java 书上讲到，最好不要去使用 clone()，可以使用拷贝构造函数或者拷贝工厂来拷贝一个对象。<br>:::<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CloneConstructorExample</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span>[] arr;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">CloneConstructorExample</span><span class="params">()</span> &#123;</span><br><span class="line">        arr = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">10</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            arr[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">CloneConstructorExample</span><span class="params">(CloneConstructorExample original)</span> &#123;</span><br><span class="line">        arr = <span class="keyword">new</span> <span class="title class_">int</span>[original.arr.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; original.arr.length; i++) &#123;</span><br><span class="line">            arr[i] = original.arr[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">set</span><span class="params">(<span class="type">int</span> index, <span class="type">int</span> value)</span> &#123;</span><br><span class="line">        arr[index] = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">get</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> arr[index];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a name="TQPvT"></a></li>
+</ol>
+<h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><p><a name="RZR44"></a></p>
+<h3 id="final"><a href="#final" class="headerlink" title="final"></a>final</h3><ol>
+<li>数据<br>:::tips<br>声明数据为常量，可以是编译时常量，也可以是在运行时被初始化后不能被改变的常量。</li>
+</ol>
+<ul>
+<li>对于基本类型，final 使数值不变；</li>
+<li>对于引用类型，final 使引用不变，也就不能引用其它对象，但是被引用的对象本身是可以修改的。<br>:::</li>
+</ul>
+<ol start="2">
+<li><p>方法<br>:::tips<br>声明方法不能被子类重写。<br />private 方法隐式地被指定为 final，如果在子类中定义的方法和基类中的一个 private 方法签名相同，此时子类的方法不是重写基类方法，而是在子类中定义了一个新的方法。<br>:::</p>
+</li>
+<li><p>类<br>:::tips<br>声明类不可被继承<br>:::<br><a name="jUkAg"></a></p>
+</li>
+</ol>
+<h3 id="static"><a href="#static" class="headerlink" title="static"></a>static</h3><ol>
+<li>静态变量<br>:::tips</li>
+</ol>
+<ul>
+<li>静态变量: 又称为类变量，也就是说这个变量属于类的，类所有的实例都共享静态变量，可以直接通过类名来访问它；静态变量在内存中只存在一份。</li>
+<li>实例变量: 每创建一个实例就会产生一个实例变量，它与该实例同生共死。<br>:::</li>
+</ul>
+<ol start="2">
+<li><p>静态方法<br>:::tips<br>静态方法在类加载的时候就存在了，它不依赖于任何实例。所以静态方法必须有实现，也就是说它不能是抽象方法(abstract)。<br />只能访问所属类的静态字段和静态方法，方法中不能有 this 和 super 关键字。<br>:::</p>
+</li>
+<li><p>静态语句块<br>:::tips<br>静态语句块在类初始化时运行一次。<br>:::</p>
+</li>
+<li><p>静态内部类<br>:::tips<br>非静态内部类依赖于外部类的实例，而静态内部类不需要。<br>:::</p>
+</li>
+<li><p>静态导包<br>:::tips<br>在使用静态变量和方法时不用再指明 ClassName，从而简化代码，但可读性大大降低。<br>:::</p>
+</li>
+<li><p>初始化顺序<br>:::tips<br>静态变量和静态语句块优先于实例变量和普通语句块，静态变量和静态语句块的初始化顺序取决于它们在代码中的顺序。<br>:::</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">String</span> <span class="variable">staticField</span> <span class="operator">=</span> <span class="string">&quot;静态变量&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;静态语句块&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">String</span> <span class="variable">field</span> <span class="operator">=</span> <span class="string">&quot;实例变量&quot;</span>;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;普通语句块&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 最后才进行构造函数初始化</span></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">InitialOrderTest</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;构造函数&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当存在继承的情况下，初始化顺序为</p>
+</li>
+<li><p>父类（静态变量、静态语块）</p>
+</li>
+<li><p>子类（静态变量、静态语块）</p>
+</li>
+<li><p>父类（实例变量、普通语块）</p>
+</li>
+<li><p>父类（构造函数）</p>
+</li>
+<li><p>子类（实例变量、普通语块）</p>
+</li>
+<li><p>子类（构造函数）<br><a name="HP1es"></a></p>
+</li>
+</ol>
+<h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p>:::tips<br>每个类都有一个 Class 对象，包含了与类有关的信息。当编译一个新类时，会产生一个同名的 .class 文件，该文件内容保存着 Class 对象。<br />类加载相当于 Class 对象的加载。类在第一次使用时才动态加载到 JVM 中，可以使用 Class.forName(“com.mysql.jdbc.Driver”) 这种方式来控制类的加载，该方法会返回一个 Class 对象。<br />反射可以提供运行时的类信息，并且这个类可以在运行时才加载进来，甚至在编译时期该类的 .class 不存在也可以加载进来。<br />Class 和 java.lang.reflect 一起对反射提供了支持，java.lang.reflect 类库主要包含了以下三个类:</p>
+<ul>
+<li>Field : 可以使用 get() 和 set() 方法读取和修改 Field 对象关联的字段；</li>
+<li>Method : 可以使用 invoke() 方法调用与 Method 对象关联的方法；</li>
+<li>Constructor : 可以用 Constructor 创建新的对象。<br>:::<br><a name="XO89C"></a></li>
+</ul>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>Throwable （可抛出）可以用来表示任何可以作为异常抛出的类<br />分为两种</p>
+<ol>
+<li>error</li>
+<li>exception</li>
+<li>exception分为两种<ol>
+<li>受检异常 : 需要用 try…catch… 语句捕获并进行处理，并且可以从异常中恢复；</li>
+<li>非受检异常 : 是程序运行时错误，例如除 0 会引发 Arithmetic Exception，此时程序崩溃并且无法恢复。</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/25709258/1675924103850-55c1e826-cce1-4722-97af-44d4d1f97055.png#averageHue=%23eaeaea&clientId=u7af4184a-646e-4&from=paste&height=458&id=ucaae91df&originHeight=573&originWidth=1038&originalType=binary&ratio=1&rotation=0&showTitle=false&size=123992&status=done&style=shadow&taskId=u647fb6bc-2021-41bb-994b-2f36aacafa3&title=&width=830.4" alt="image.png"><br><a name="JX1Fb"></a></p>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Box</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="comment">// T stands for &quot;Type&quot;</span></span><br><span class="line">    <span class="keyword">private</span> T t;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">set</span><span class="params">(T t)</span> &#123; <span class="built_in">this</span>.t = t; &#125;</span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">get</span><span class="params">()</span> &#123; <span class="keyword">return</span> t; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a name="duTP0"></a></p>
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><p>Java 注解是附加在代码中的一些元信息，用于一些工具在编译、运行时进行解析和使用，起到说明、配置的功能。注解不会也不能影响代码的实际逻辑，仅仅起到辅助性的作用。</p>
+<p><a name="krh1Q"></a></p>
+<h2 id="Java和C-的区别"><a href="#Java和C-的区别" class="headerlink" title="Java和C++的区别"></a>Java和C++的区别</h2><ol>
+<li>Java是纯粹的面向对象的语言，所有对象都继承自java.long.object对象,C++为了兼容c即支持面向对象又支持面向过程</li>
+<li>Java是通过虚拟机从而实现跨平台特性,而c++是依赖于特定平台</li>
+<li>Java没有指针,对象引用可以理解为安全指针,而c++有指针</li>
+<li>Java支持自动垃圾回收,c++需要手动回收垃圾</li>
+<li>Java不支持多重继承,只能通过接口来达到相同的目的,c++可以多重继承</li>
+<li>Java不支持操作符重载,虽然可以对两个 String 对象支持加法运算，但是这是语言内置支持的操作，不属于操作符重载，而 C++ 可以。</li>
+<li>Java的 goto 是保留字，但是不可用，C++ 可以使用 goto。</li>
+<li>Java不支持条件编译，C++ 通过 #ifdef #ifndef 等预处理命令从而实现条件编译。<br>:::tips<br>安全指针<br>:::<br>:::tips<br>多重继承指的是一个类可以同时继承多个类<br>:::<br>:::tips<br>操作符重载<br />用户自定义的类对象，两个对象之间是不能进行加减乘除操作的，比如hyong类的对象a+b，这样的语句如果没有重载+运算符就会出错。<br />但C++允许用户把这些运算符添加到自已的类中以方便类对象之间的运算就像内置类型的运算一样方便，<br />比如对象a+b这样就很明白更容易懂，当然也可以在类中定义一个对象间相加的函数，比如a.add(b)调用函数add()以实现两个对象a和b相加，但是这条语句没有比a+b更容易让人理解。<br>:::<br>:::tips<br>条件编译<br />一般情况下，C语言源程序中的每一行代码都要参加编译。但有时候出于对程序代码优化的考虑，希望只对其中一部分内容进行编译，此时就需要在程序中加上条件，让编译器只对满足条件的代码进行编译，将不满足条件的代码舍弃，这就是条件编译<br>:::<br><a name="EGkpK"></a></li>
+</ol>
+<h1 id="图谱-Q-A"><a href="#图谱-Q-A" class="headerlink" title="图谱&amp;Q&#x2F;A"></a>图谱&amp;Q&#x2F;A</h1><p><a name="kUypR"></a></p>
+<h2 id="知识体系图"><a href="#知识体系图" class="headerlink" title="知识体系图"></a>知识体系图</h2><p><img src="https://cdn.nlark.com/yuque/0/2023/png/25709258/1675926907383-4510ff3c-6b57-48b4-8be9-75f872fb7263.png#averageHue=%23efeff0&clientId=u4a49ed88-c0d4-4&from=paste&height=1586&id=ub7b77570&originHeight=1982&originWidth=1615&originalType=binary&ratio=1&rotation=0&showTitle=false&size=105401&status=done&style=shadow&taskId=u19c3cfbd-c043-42db-bbc3-9d08c8b282c&title=&width=1292" alt="java_basic.png"><br><a name="amK1G"></a></p>
+<h2 id="Q-A"><a href="#Q-A" class="headerlink" title="Q&#x2F;A"></a>Q&#x2F;A</h2><p>:::tips<br><a name="aLwH2"></a></p>
+<h3 id="Java中是用什么样的数据类型来代表价格"><a href="#Java中是用什么样的数据类型来代表价格" class="headerlink" title="Java中是用什么样的数据类型来代表价格?"></a><strong>Java中是用什么样的数据类型来代表价格?</strong></h3><p>如果不是特别关心内存和性能的话，使用BigDecimal，否则使用预定义精度的 double 类型.<br>:::<br>:::tips<br><a name="OSV5L"></a></p>
+<h3 id="怎样将byte转化为string"><a href="#怎样将byte转化为string" class="headerlink" title="怎样将byte转化为string?"></a><strong>怎样将byte转化为string?</strong></h3><p>可以使用 String 接收 byte[] 参数的构造器来进行转换，需要注意的点是要使用的正确的编码，否则会使用平台默认编码，这个编码可能跟原来的编码相同，也可能不同<br>:::<br>:::tips<br><a name="cU7Be"></a></p>
+<h3 id="Java-中怎样将-bytes-转换为-long-类型"><a href="#Java-中怎样将-bytes-转换为-long-类型" class="headerlink" title="Java 中怎样将 bytes 转换为 long 类型?"></a>Java 中怎样将 bytes 转换为 long 类型?</h3><p>String接收bytes的构造器转成String，再Long.parseLong<br>:::<br>:::tips<br><a name="G5Ehl"></a></p>
+<h3 id="我们能将-int-强制转换为-byte-类型的变量吗-如果该值大于-byte-类型的范围，将会出现什么现象"><a href="#我们能将-int-强制转换为-byte-类型的变量吗-如果该值大于-byte-类型的范围，将会出现什么现象" class="headerlink" title="我们能将 int 强制转换为 byte 类型的变量吗? 如果该值大于 byte 类型的范围，将会出现什么现象?"></a>我们能将 int 强制转换为 byte 类型的变量吗? 如果该值大于 byte 类型的范围，将会出现什么现象?</h3><p>是的，我们可以做强制转换，但是 Java 中 int 是 32 位的，而 byte 是 8 位的，所以，如果强制转化是，int 类型的高 24 位将会被丢弃，byte 类型的范围是从 -128 到 127。<br>:::<br>:::tips<br><a name="iWMiF"></a></p>
+<h3 id="存在两个类，B-继承-A，C-继承-B，我们能将-B-转换为-C-么-如-C-C-B；"><a href="#存在两个类，B-继承-A，C-继承-B，我们能将-B-转换为-C-么-如-C-C-B；" class="headerlink" title="存在两个类，B 继承 A，C 继承 B，我们能将 B 转换为 C 么? 如 C &#x3D; (C) B；"></a>存在两个类，B 继承 A，C 继承 B，我们能将 B 转换为 C 么? 如 C &#x3D; (C) B；</h3><p>可以，向下转型。但是不建议使用，容易出现类型转型异常.<br>:::<br>:::tips<br><a name="nCkeZ"></a></p>
+<h3 id="哪个类包含-clone-方法-是-Cloneable-还是-Object"><a href="#哪个类包含-clone-方法-是-Cloneable-还是-Object" class="headerlink" title="哪个类包含 clone 方法? 是 Cloneable 还是 Object?"></a>哪个类包含 clone 方法? 是 Cloneable 还是 Object?</h3><p>java.lang.Cloneable 是一个标示性接口，不包含任何方法，clone 方法在 object 类中定义。并且需要知道 clone() 方法是一个本地方法，这意味着它是由 c 或 c++ 或 其他本地语言实现的。<br>:::<br>:::tips<br><a name="x4rTW"></a></p>
+<h3 id="Java-中-操作符是线程安全的吗"><a href="#Java-中-操作符是线程安全的吗" class="headerlink" title="Java 中 ++ 操作符是线程安全的吗?"></a>Java 中 ++ 操作符是线程安全的吗?</h3><p>不是线程安全的操作。它涉及到多个指令，如读取变量值，增加，然后存储回内存，这个过程可能会出现多个线程交差。还会存在竞态条件(读取-修改-写入)。<br>:::<br>:::tips<br><a name="Mw9WP"></a></p>
+<h3 id="a-a-b-与-a-b-的区别"><a href="#a-a-b-与-a-b-的区别" class="headerlink" title="a &#x3D; a + b 与 a +&#x3D; b 的区别"></a>a &#x3D; a + b 与 a +&#x3D; b 的区别</h3><p>+&#x3D; 隐式的将加操作的结果类型强制转换为持有结果的类型。如果两个整型相加，如 byte、short 或者 int，首先会将它们提升到 int 类型，然后在执行加法操作。<br>:::</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">byte</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">127</span>;</span><br><span class="line"><span class="type">byte</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">127</span>;</span><br><span class="line">b = a + b; <span class="comment">// error : cannot convert from int to byte</span></span><br><span class="line">b += a; <span class="comment">// ok</span></span><br><span class="line"><span class="comment">// 因为 a+b 操作会将 a、b 提升为 int 类型，所以将 int 类型赋值给 byte 就会编译出错</span></span><br></pre></td></tr></table></figure>
+<p>:::tips<br><a name="uifvc"></a></p>
+<h3 id="我能在不进行强制转换的情况下将一个-double-值赋值给-long-类型的变量吗"><a href="#我能在不进行强制转换的情况下将一个-double-值赋值给-long-类型的变量吗" class="headerlink" title="我能在不进行强制转换的情况下将一个 double 值赋值给 long 类型的变量吗?"></a>我能在不进行强制转换的情况下将一个 double 值赋值给 long 类型的变量吗?</h3><p>不行，你不能在没有强制类型转换的前提下将一个 double 值赋值给 long 类型的变量，因为 double 类型的范围比 long 类型更广，所以必须要进行强制转换。<br>:::<br>:::tips<br><a name="uGMwx"></a></p>
+<h3 id="3-0-1-0-3-将会返回什么-true-还是-false"><a href="#3-0-1-0-3-将会返回什么-true-还是-false" class="headerlink" title="3*0.1 &#x3D;&#x3D; 0.3 将会返回什么? true 还是 false?"></a>3*0.1 &#x3D;&#x3D; 0.3 将会返回什么? true 还是 false?</h3><p>false，因为有些浮点数不能完全精确的表示出来<br>:::<br>:::tips<br><a name="O3Hqn"></a></p>
+<h3 id="int-和-Integer-哪个会占用更多的内存"><a href="#int-和-Integer-哪个会占用更多的内存" class="headerlink" title="int 和 Integer 哪个会占用更多的内存?"></a>int 和 Integer 哪个会占用更多的内存?</h3><p>Integer 对象会占用更多的内存。Integer 是一个对象，需要存储对象的元数据。但是 int 是一个原始类型的数据，所以占用的空间更少<br>:::<br>:::tips<br><a name="Dvr5y"></a></p>
+<h3 id="为什么-Java-中的-String-是不可变的-Immutable"><a href="#为什么-Java-中的-String-是不可变的-Immutable" class="headerlink" title="为什么 Java 中的 String 是不可变的(Immutable)?"></a>为什么 Java 中的 String 是不可变的(Immutable)?</h3><p>Java 中的 String 不可变是因为 Java 的设计者认为字符串使用非常频繁，将字符串设置为不可变可以允许多个客户端之间共享相同的字符串。更详细的内容参见答案<br>:::<br>:::tips<br><a name="mgO9n"></a></p>
+<h3 id="我们能在-Switch-中使用-String-吗"><a href="#我们能在-Switch-中使用-String-吗" class="headerlink" title="我们能在 Switch 中使用 String 吗?"></a>我们能在 Switch 中使用 String 吗?</h3><p>从 Java 7 开始，我们可以在 switch case 中使用字符串，但这仅仅是一个语法糖。内部实现在 switch 中使用字符串的 hash code<br>:::<br>:::tips<br><a name="O65Ri"></a></p>
+<h3 id="Java-中的构造器链是什么"><a href="#Java-中的构造器链是什么" class="headerlink" title="Java 中的构造器链是什么?"></a>Java 中的构造器链是什么?</h3><p>当你从一个构造器中调用另一个构造器，就是Java 中的构造器链。这种情况只在重载了类的构造器的时候才会出现<br>:::<br>:::tips<br><a name="j8Y5s"></a></p>
+<h3 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h3><p>JDK1.5出现 每个枚举值都需要调用一次构造函数<br>:::<br>:::tips<br><a name="F5Izr"></a></p>
+<h3 id="什么是不可变对象-immutable-object-Java-中怎么创建一个不可变对象"><a href="#什么是不可变对象-immutable-object-Java-中怎么创建一个不可变对象" class="headerlink" title="什么是不可变对象(immutable object)? Java 中怎么创建一个不可变对象?"></a>什么是不可变对象(immutable object)? Java 中怎么创建一个不可变对象?</h3><p>不可变对象指对象一旦被创建，状态就不能再改变。任何修改都会创建一个新的对象，如 String、Integer及其它包装类。<br />如何在Java中写出Immutable的类?<br />要写出这样的类，需要遵循以下几个原则:</p>
+<ol>
+<li>immutable对象的状态在创建之后就不能发生改变，任何对它的改变都应该产生一个新的对象。</li>
+<li>Immutable类的所有的属性都应该是final的。</li>
+<li>对象必须被正确的创建，比如: 对象引用在对象创建过程中不能泄露(leak)。</li>
+<li>对象应该是final的，以此来限制子类继承父类，以避免子类改变了父类的immutable特性。</li>
+<li>如果类中包含mutable类对象，那么返回给客户端的时候，返回该对象的一个拷贝，而不是该对象本身(该条可以归为第一条中的一个特例<br>:::<br>:::tips<br><a name="YLH0d"></a></li>
+</ol>
+<h3 id="我们能创建一个包含可变对象的不可变对象吗"><a href="#我们能创建一个包含可变对象的不可变对象吗" class="headerlink" title="我们能创建一个包含可变对象的不可变对象吗?"></a>我们能创建一个包含可变对象的不可变对象吗?</h3><p>是的，我们是可以创建一个包含可变对象的不可变对象的，你只需要谨慎一点，不要共享可变对象的引用就可以了，如果需要变化时，就返回原对象的一个拷贝。最常见的例子就是对象中包含一个日期对象的引用<br>:::<br>:::tips<br><a name="Pz4O8"></a></p>
+<h3 id="有没有可能两个不相等的对象有相同的-hashcode"><a href="#有没有可能两个不相等的对象有相同的-hashcode" class="headerlink" title="有没有可能两个不相等的对象有相同的 hashcode?"></a>有没有可能两个不相等的对象有相同的 hashcode?</h3><p>有可能，两个不相等的对象可能会有相同的 hashcode 值，这就是为什么在 hashmap 中会有冲突。相等 hashcode 值的规定只是说如果两个对象相等，必须有相同的hashcode 值，但是没有关于不相等对象的任何规定<br>:::<br>:::tips<br><a name="XCwf5"></a></p>
+<h3 id="两个相同的对象会有不同的-hash-code-吗"><a href="#两个相同的对象会有不同的-hash-code-吗" class="headerlink" title="两个相同的对象会有不同的 hash code 吗?"></a>两个相同的对象会有不同的 hash code 吗?</h3><p>不能，根据 hash code 的规定，这是不可能的<br>:::<br>:::tips<br><a name="Vt62D"></a></p>
+<h3 id="我们可以在-hashcode-中使用随机数字吗"><a href="#我们可以在-hashcode-中使用随机数字吗" class="headerlink" title="我们可以在 hashcode() 中使用随机数字吗?"></a>我们可以在 hashcode() 中使用随机数字吗?</h3><p>不行，因为对象的 hashcode 值必须是相同的<br>:::<br>:::tips<br><a name="GHfNj"></a></p>
+<h3 id="Java-中，Comparator-与-Comparable-有什么不同"><a href="#Java-中，Comparator-与-Comparable-有什么不同" class="headerlink" title="Java 中，Comparator 与 Comparable 有什么不同?"></a>Java 中，Comparator 与 Comparable 有什么不同?</h3><p>Comparable 接口用于定义对象的自然顺序，而 comparator 通常用于定义用户定制的顺序。Comparable 总是只有一个，但是可以有多个 comparator 来定义对象的顺序<br>:::<br>:::tips<br><a name="X1V2D"></a></p>
+<h3 id="为什么在重写-equals-方法的时候需要重写-hashCode-方法"><a href="#为什么在重写-equals-方法的时候需要重写-hashCode-方法" class="headerlink" title="为什么在重写 equals 方法的时候需要重写 hashCode 方法?"></a>为什么在重写 equals 方法的时候需要重写 hashCode 方法?</h3><p>因为有强制的规范指定需要同时重写 hashcode 与 equals 是方法，许多容器类，如 HashMap、HashSet 都依赖于 hashcode 与 equals 的规定。<br>:::<br>:::tips<br><a name="DhiTk"></a></p>
+<h3 id="“a-b”和”a-equals-b-”有什么区别"><a href="#“a-b”和”a-equals-b-”有什么区别" class="headerlink" title="“a&#x3D;&#x3D;b”和”a.equals(b)”有什么区别?"></a>“a&#x3D;&#x3D;b”和”a.equals(b)”有什么区别?</h3><p>如果 a 和 b 都是对象，则 a&#x3D;&#x3D;b 是比较两个对象的引用，只有当 a 和 b 指向的是堆中的同一个对象才会返回 true，而 a.equals(b) 是进行逻辑比较，所以通常需要重写该方法来提供逻辑一致性的比较。例如，String 类重写 equals() 方法，所以可以用于两个不同对象，但是包含的字母相同的比较<br>:::<br><a name="XvlmJ"></a></p>
+<h1 id="泛型详解"><a href="#泛型详解" class="headerlink" title="泛型详解"></a>泛型详解</h1><blockquote>
+<p> Java泛型这个特性是从JDK 1.5才开始加入的，因此为了兼容之前的版本，Java泛型的实现采取了“<strong>伪泛型</strong>”的策略，即Java在语法上支持泛型，但是在编译阶段会进行所谓的“<strong>类型擦除</strong>”（Type Erasure），将所有的泛型表示（尖括号中的内容）都替换为具体的类型（其对应的原生态类型），就像完全没有泛型一样。本文综合多篇文章后，总结了Java 泛型的相关知识，希望可以提升你对Java中泛型的认知效率。</p>
+</blockquote>
+<p><a name="TGHiL"></a></p>
+<h2 id="为什么引入泛型"><a href="#为什么引入泛型" class="headerlink" title="为什么引入泛型"></a>为什么引入泛型</h2><blockquote>
+<p> 泛型的本质是为了参数化类型（在不创建新的类型的情况下，通过泛型指定的不同类型来控制形参具体限制的类型）。也就是说在泛型使用过程中，操作的数据类型被指定为一个参数，这种参数类型可以用在类、接口和方法中，分别被称为泛型类、泛型接口、泛型方法。</p>
+</blockquote>
+<p>泛型的意义在于</p>
+<ul>
+<li><strong>适用于多种数据类型执行相同的代码</strong></li>
+</ul>
+<p>例如下面两组代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    System.out.println(a + <span class="string">&quot;+&quot;</span> + b + <span class="string">&quot;=&quot;</span> + (a + b));</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">float</span> <span class="title function_">add</span><span class="params">(<span class="type">float</span> a, <span class="type">float</span> b)</span> &#123;</span><br><span class="line">    System.out.println(a + <span class="string">&quot;+&quot;</span> + b + <span class="string">&quot;=&quot;</span> + (a + b));</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">add</span><span class="params">(<span class="type">double</span> a, <span class="type">double</span> b)</span> &#123;</span><br><span class="line">    System.out.println(a + <span class="string">&quot;+&quot;</span> + b + <span class="string">&quot;=&quot;</span> + (a + b));</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果没有泛型，要实现不同类型的加法，每种类型都需要重载一个add方法；</span></span><br><span class="line"><span class="comment">// 通过泛型，我们可以复用为一个方法：</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> &lt;T <span class="keyword">extends</span> <span class="title class_">Number</span>&gt; <span class="type">double</span> <span class="title function_">add</span><span class="params">(T a, T b)</span> &#123;</span><br><span class="line">    System.out.println(a + <span class="string">&quot;+&quot;</span> + b + <span class="string">&quot;=&quot;</span> + (a.doubleValue() + b.doubleValue()));</span><br><span class="line">    <span class="keyword">return</span> a.doubleValue() + b.doubleValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>泛型中的类型在使用时指定，不需要强制类型转换（<strong>类型安全</strong>，编译器会<strong>检查类型</strong>）<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">List</span> <span class="variable">list</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">list.add(<span class="string">&quot;xxString&quot;</span>);</span><br><span class="line">list.add(<span class="number">100d</span>);</span><br><span class="line">list.add(<span class="keyword">new</span> <span class="title class_">Person</span>());</span><br><span class="line"><span class="comment">// 我们在使用上述list中，list中的元素都是Object类型（无法约束其中的类型），</span></span><br><span class="line"><span class="comment">// 所以在取出集合元素时需要人为的强制类型转化到具体的目标类型，</span></span><br><span class="line"><span class="comment">// 且很容易出现java.lang.ClassCastException异常。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入泛型，它将提供类型的约束，提供编译前的检查：</span></span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// list中只能放String, 不能放其它类型的元素</span></span><br></pre></td></tr></table></figure>
+<a name="ECUac"></a></li>
+</ul>
+<h2 id="泛型的基本使用"><a href="#泛型的基本使用" class="headerlink" title="泛型的基本使用"></a>泛型的基本使用</h2><blockquote>
+<p>泛型有三种使用方式，分别为：泛型类、泛型接口、泛型方法。</p>
+</blockquote>
+<p><a name="w7WML"></a></p>
+<h3 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h3><ol>
+<li><p>简单泛型类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Point</span>&lt;T&gt;&#123;         <span class="comment">// 此处可以随便写标识符号，T是type的简称  </span></span><br><span class="line">    <span class="keyword">private</span> T <span class="keyword">var</span> ;     <span class="comment">// var的类型由T指定，即：由外部指定  </span></span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">getVar</span><span class="params">()</span>&#123;  <span class="comment">// 返回值的类型由外部决定  </span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">var</span> ;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setVar</span><span class="params">(T <span class="keyword">var</span>)</span>&#123;  <span class="comment">// 设置的类型也由外部决定  </span></span><br><span class="line">        <span class="built_in">this</span>.<span class="keyword">var</span> = <span class="keyword">var</span> ;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GenericsDemo06</span>&#123;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span>&#123;  </span><br><span class="line">        Point&lt;String&gt; p = <span class="keyword">new</span> <span class="title class_">Point</span>&lt;String&gt;() ;     <span class="comment">// 里面的var类型为String类型  </span></span><br><span class="line">        p.setVar(<span class="string">&quot;it&quot;</span>) ;                            <span class="comment">// 设置字符串  </span></span><br><span class="line">        System.out.println(p.getVar().length()) ;   <span class="comment">// 取得字符串的长度  </span></span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多元泛型类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Notepad</span>&lt;K,V&gt;&#123;       <span class="comment">// 此处指定了两个泛型类型  </span></span><br><span class="line">    <span class="keyword">private</span> K key ;     <span class="comment">// 此变量的类型由外部决定  </span></span><br><span class="line">    <span class="keyword">private</span> V value ;   <span class="comment">// 此变量的类型由外部决定  </span></span><br><span class="line">    <span class="keyword">public</span> K <span class="title function_">getKey</span><span class="params">()</span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.key ;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">public</span> V <span class="title function_">getValue</span><span class="params">()</span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.value ;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setKey</span><span class="params">(K key)</span>&#123;  </span><br><span class="line">        <span class="built_in">this</span>.key = key ;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setValue</span><span class="params">(V value)</span>&#123;  </span><br><span class="line">        <span class="built_in">this</span>.value = value ;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GenericsDemo09</span>&#123;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span>&#123;  </span><br><span class="line">        Notepad&lt;String,Integer&gt; t = <span class="literal">null</span> ;        <span class="comment">// 定义两个泛型类型的对象  </span></span><br><span class="line">        t = <span class="keyword">new</span> <span class="title class_">Notepad</span>&lt;String,Integer&gt;() ;       <span class="comment">// 里面的key为String，value为Integer  </span></span><br><span class="line">        t.setKey(<span class="string">&quot;汤姆&quot;</span>) ;        <span class="comment">// 设置第一个内容  </span></span><br><span class="line">        t.setValue(<span class="number">20</span>) ;            <span class="comment">// 设置第二个内容  </span></span><br><span class="line">        System.out.print(<span class="string">&quot;姓名；&quot;</span> + t.getKey()) ;      <span class="comment">// 取得信息  </span></span><br><span class="line">        System.out.print(<span class="string">&quot;，年龄；&quot;</span> + t.getValue()) ;       <span class="comment">// 取得信息  </span></span><br><span class="line">  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a name="tM3bp"></a></p>
+</li>
+</ol>
+<h3 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h3><ol>
+<li>简单泛型接口<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Info</span>&lt;T&gt;&#123;        <span class="comment">// 在接口上定义泛型  </span></span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">getVar</span><span class="params">()</span> ; <span class="comment">// 定义抽象方法，抽象方法的返回值就是泛型类型  </span></span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InfoImpl</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Info</span>&lt;T&gt;&#123;   <span class="comment">// 定义泛型接口的子类  </span></span><br><span class="line">    <span class="keyword">private</span> T <span class="keyword">var</span> ;             <span class="comment">// 定义属性  </span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">InfoImpl</span><span class="params">(T <span class="keyword">var</span>)</span>&#123;     <span class="comment">// 通过构造方法设置属性内容  </span></span><br><span class="line">        <span class="built_in">this</span>.setVar(<span class="keyword">var</span>) ;    </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setVar</span><span class="params">(T <span class="keyword">var</span>)</span>&#123;  </span><br><span class="line">        <span class="built_in">this</span>.<span class="keyword">var</span> = <span class="keyword">var</span> ;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">getVar</span><span class="params">()</span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.<span class="keyword">var</span> ;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GenericsDemo24</span>&#123;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String arsg[])</span>&#123;  </span><br><span class="line">        Info&lt;String&gt; i = <span class="literal">null</span>;        <span class="comment">// 声明接口对象  </span></span><br><span class="line">        i = <span class="keyword">new</span> <span class="title class_">InfoImpl</span>&lt;String&gt;(<span class="string">&quot;汤姆&quot;</span>) ;  <span class="comment">// 通过子类实例化对象  </span></span><br><span class="line">        System.out.println(<span class="string">&quot;内容：&quot;</span> + i.getVar()) ;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+<a name="JtSCG"></a></li>
+</ol>
+<h3 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h3><p>泛型类，是在实例化类的时候指明泛型的具体类型；泛型方法，是在调用方法的时候指明泛型的具体类型。</p>
+<ol>
+<li>定义泛型方法语法</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/25709258/1675933862526-791d4270-ea6f-4b12-9b9c-7062b7c66976.png#averageHue=%23fcf4f4&clientId=u4a49ed88-c0d4-4&from=paste&id=u5a6f46af&originHeight=543&originWidth=1199&originalType=url&ratio=1&rotation=0&showTitle=false&size=48553&status=done&style=shadow&taskId=u7b0535b9-4ddc-4e6a-b0c9-e5d2a9eff98&title=" alt="image.png"></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 Luoyudi&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Luoyudi
+        </div>
+        <div>
+            Based on the <a href="https://hexo.io">Hexo Engine</a> &amp;
+            <a href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
