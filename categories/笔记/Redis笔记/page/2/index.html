@@ -1,0 +1,608 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>Categories: Redis笔记 | Luoyudi&#39;s Blog</title>
+    <meta name="author" content="Luoyudi" />
+    <meta name="description" content="This is a personal blog site that keeps track of various questions and my study notes." />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LUOYUDI&#39;S BLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LUOYUDI&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="archives">
+    
+    <div class="categories-tags">
+        
+        
+        
+        <span>
+            <a href="/categories/Redis%E7%AC%94%E8%AE%B0/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Redis笔记
+            </a>
+        </span>
+        
+        
+        
+        
+        
+        <span>
+            <a href="/categories/Redis%E7%AC%94%E8%AE%B0/%E5%9F%BA%E7%A1%80/" style="background: #03a9f4">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                基础
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/categories/Redis%E7%AC%94%E8%AE%B0/Jedis/" style="background: #00a596">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Jedis
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/categories/SSM/" style="background: #ff7d73">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                SSM
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/categories/%E7%AC%94%E8%AE%B0/" style="background: #00a596">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                笔记
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/categories/%E8%B5%84%E6%96%99/" style="background: #03a9f4">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                资料
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/categories/SSM/MyBatis%E7%AC%94%E8%AE%B0/" style="background: #ffa2c4">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                MyBatis笔记
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/categories/SSM/springMVC/" style="background: #ff7d73">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                springMVC
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/categories/SSM/SSM%E7%AC%94%E8%AE%B0/" style="background: #ffa2c4">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                SSM笔记
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/categories/%E7%AC%94%E8%AE%B0/MyBatis%E7%AC%94%E8%AE%B0/" style="background: #03a9f4">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                MyBatis笔记
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/categories/%E7%AC%94%E8%AE%B0/SSM%E7%AC%94%E8%AE%B0/" style="background: #00bcd4">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                SSM笔记
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/categories/%E8%B5%84%E6%96%99/Git/" style="background: #03a9f4">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Git
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/categories/%E7%AC%94%E8%AE%B0/Redis%E7%AC%94%E8%AE%B0/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Redis笔记
+            </a>
+        </span>
+        
+        
+        
+        
+        
+        <span>
+            <a href="/categories/%E7%AC%94%E8%AE%B0/Redis%E7%AC%94%E8%AE%B0/Jedis/" style="background: #00a596">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Jedis
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/categories/%E7%AC%94%E8%AE%B0/Redis%E7%AC%94%E8%AE%B0/%E5%9F%BA%E7%A1%80/" style="background: #00bcd4">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                基础
+            </a>
+        </span>
+        
+        
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2024/3/28</div>
+            <a href="/2024/03/6e142e3537cc.html">
+                <h3></h3>
+            </a>
+            <div class="info">
+                
+                <span class="category">
+                    <a href="/categories/%E7%AC%94%E8%AE%B0/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        笔记
+                    </a>
+                </span>
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2024/3/28</div>
+            <a href="/2024/03/86799a3c7b32.html">
+                <h3></h3>
+            </a>
+            <div class="info">
+                
+                <span class="category">
+                    <a href="/categories/%E7%AC%94%E8%AE%B0/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        笔记
+                    </a>
+                </span>
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2024/3/28</div>
+            <a href="/2024/03/3ee4dc87ae3e.html">
+                <h3></h3>
+            </a>
+            <div class="info">
+                
+                <span class="category">
+                    <a href="/categories/%E7%AC%94%E8%AE%B0/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        笔记
+                    </a>
+                </span>
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2024/3/28</div>
+            <a href="/2024/03/5004a7d76959.html">
+                <h3></h3>
+            </a>
+            <div class="info">
+                
+                <span class="category">
+                    <a href="/categories/%E7%AC%94%E8%AE%B0/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        笔记
+                    </a>
+                </span>
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2024/3/28</div>
+            <a href="/2024/03/919f074c3736.html">
+                <h3></h3>
+            </a>
+            <div class="info">
+                
+                <span class="category">
+                    <a href="/categories/%E7%AC%94%E8%AE%B0/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        笔记
+                    </a>
+                </span>
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2024/3/28</div>
+            <a href="/2024/03/690af02bb55a.html">
+                <h3></h3>
+            </a>
+            <div class="info">
+                
+                <span class="category">
+                    <a href="/categories/%E7%AC%94%E8%AE%B0/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        笔记
+                    </a>
+                </span>
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2024/3/28</div>
+            <a href="/2024/03/2364fd769ade.html">
+                <h3></h3>
+            </a>
+            <div class="info">
+                
+                <span class="category">
+                    <a href="/categories/%E7%AC%94%E8%AE%B0/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        笔记
+                    </a>
+                </span>
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2024/3/28</div>
+            <a href="/2024/03/acd98dc3585a.html">
+                <h3></h3>
+            </a>
+            <div class="info">
+                
+                <span class="category">
+                    <a href="/categories/%E7%AC%94%E8%AE%B0/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        笔记
+                    </a>
+                </span>
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2024/3/28</div>
+            <a href="/2024/03/c05233cc0cb7.html">
+                <h3></h3>
+            </a>
+            <div class="info">
+                
+                <span class="category">
+                    <a href="/categories/%E7%AC%94%E8%AE%B0/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        笔记
+                    </a>
+                </span>
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2024/3/28</div>
+            <a href="/2024/03/6fa3c333c183.html">
+                <h3></h3>
+            </a>
+            <div class="info">
+                
+                <span class="category">
+                    <a href="/categories/%E7%AC%94%E8%AE%B0/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        笔记
+                    </a>
+                </span>
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2024/3/28</div>
+            <a href="/2024/03/a160f2c67175.html">
+                <h3></h3>
+            </a>
+            <div class="info">
+                
+                <span class="category">
+                    <a href="/categories/%E7%AC%94%E8%AE%B0/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        笔记
+                    </a>
+                </span>
+                
+                
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 Luoyudi&#39;s Blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Luoyudi
+        </div>
+        <div>
+            Based on the <a href="https://hexo.io">Hexo Engine</a> &amp;
+            <a href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+</body>
+</html>
